@@ -6,11 +6,20 @@ import (
 	"gorm.io/gorm"
 )
 
+type Patient struct {
+	gorm.Model
+
+	Name  string
+	Tel   string
+	Email string
+}
+
 type AmbulanceOnDuty struct {
 	gorm.Model
 
-	Annotation string
-	Date       time.Time
+	Code       string
+	OnDutyDate time.Time
+	Passenger  uint
 
 	// AmbulanceID *uint
 	// Ambulance   Ambulance
