@@ -38,8 +38,8 @@ type Assessment struct {
 	SymptomLevel uint
 	Datetime     time.Time
 
-	// PatientID  *uint
-	// Patient	  Patient
+	git PatientID  *uint
+	Patient	  Patient
 
 	// RecorderID *uint
 	// Recorder   Employee

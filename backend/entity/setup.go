@@ -21,13 +21,13 @@ func SetupDatabase() {
 
 	// Migrate the schema
 
-	database.AutoMigrate(&
-	// Employee{},
-	// Incident{},
-	// Ambulance{},
-	// Patient{},
-	AmbulanceOnDuty{},
-		Assessment{},
+	database.AutoMigrate(
+		// Employee{},
+		// Incident{},
+		// Ambulance{},
+		// Patient{},
+		&AmbulanceOnDuty{},
+		&Assessment{},
 	)
 
 	db = database
