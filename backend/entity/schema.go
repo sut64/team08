@@ -21,14 +21,14 @@ type AmbulanceOnDuty struct {
 	OnDutyDate time.Time
 	Passenger  uint
 
-	// AmbulanceID *uint
-	// Ambulance   Ambulance
+	AmbulanceID *uint
+	Ambulance   Ambulance
 
-	// RecorderID *uint
-	// Recorder   Employee
+	RecorderID *uint
+	Recorder   Employee
 
-	// IncidentID *uint
-	// Incident   Incident
+	IncidentID *uint
+	Incident   Incident
 }
 
 type AmbulanceArrival struct {
@@ -38,10 +38,10 @@ type AmbulanceArrival struct {
 	DateTime         time.Time
 
 	RecorderID *uint
-	//Recorder   Employee
+	Recorder   Employee
 
 	PatientID *uint
-	//Patient	Patient
+	Patient   Patient
 
 	AmbulanceOnDutyID *uint
 	AmbulanceOnDuty   AmbulanceOnDuty
@@ -54,14 +54,48 @@ type Assessment struct {
 	SymptomLevel uint
 	Datetime     time.Time
 
-	// PatientID  *uint
-	// Patient	  Patient
+	PatientID *uint
+	Patient   Patient
 
-	// RecorderID *uint
-	// Recorder   Employee
+	RecorderID *uint
+	Recorder   Employee
 
-	// IncidentID *uint
-	// Incident   Incident
+	IncidentID *uint
+	Incident   Incident
+}
+type Ambulance struct {
+	gorm.Model
+	CarNumber    int
+	Registration string
+	DateTime     time.Time
+
+	StatusID *uint
+	Status   Status `gorm:"references:id"`
+
+	AmbulanceTypeID *uint
+	AmbulanceType   AmbulanceType `gorm:"references:id"`
+
+	EmployeeID *uint
+	Employee   Employee `gorm:"references:id"`
+}
+type Status struct {
+	gorm.Model
+	Detail  string
+	Records []Ambulance `gorm:"foreignKey:StatusID"`
+}
+type AmbulanceType struct {
+	gorm.Model
+	Name    string
+	Detail  string
+	Records []Ambulance `gorm:"foreignKey:AmbulanceTypeID"`
+}
+type Employee struct {
+	gorm.Model
+	Name     string
+	Tel      string
+	Email    string `gorm:"uniqueIndex"`
+	Password string
+	Records  []Ambulance `gorm:"foreignKey:EmployeeID"`
 }
 
 type AmbulanceCheck struct {
@@ -75,11 +109,11 @@ type AmbulanceCheck struct {
 
 	//AmbulanceID ทำหน้าที่เป็น FK
 	AmbulanceID *uint
-	//Ambulance   Ambulance `gorm:"references:id"`
+	Ambulance   Ambulance `gorm:"references:id"`
 
 	//RecorderID ทำหน้าที่เป็น FK
 	RecorderID *uint
-	//Recorder   Employee `gorm:"references:id"`
+	Recorder   Employee `gorm:"references:id"`
 }
 
 type Illness struct {
@@ -95,12 +129,12 @@ type Incident struct {
 	Numberpatient int
 	Location      string
 	Datetime      time.Time
-	// EmployeeID    *uint
-	// Employee      Employee
-	IllnessID *uint
-	Illness   Illness
-	UrgencyID *uint
-	Urgency   Urgency
+	EmployeeID    *uint
+	Employee      Employee
+	IllnessID     *uint
+	Illness       Illness
+	UrgencyID     *uint
+	Urgency       Urgency
 }
 
 type Urgency struct {
