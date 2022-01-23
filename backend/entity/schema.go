@@ -21,3 +21,19 @@ type AmbulanceOnDuty struct {
 	// IncidentID *uint
 	// Incident   Incident
 }
+
+type AmbulanceArrival struct {
+	gorm.Model
+	Number_of_people int
+	Distance         float32
+	DateTime         time.Time
+
+	RecorderID *uint
+	//Recorder   Employee
+
+	PatientID *uint
+	//Patient	Patient
+
+	AmbulanceOnDutyID *uint
+	AmbulanceOnDuty   AmbulanceOnDuty
+}
