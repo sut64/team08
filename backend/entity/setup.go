@@ -25,7 +25,10 @@ func SetupDatabase() {
 	// Employee{},
 	// Incident{},
 	// Ambulance{},
-	AmbulanceOnDuty{})
+	// Patient{},
+	AmbulanceOnDuty{},
+		Assessment{},
+	)
 
 	db = database
 }

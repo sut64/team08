@@ -21,3 +21,20 @@ type AmbulanceOnDuty struct {
 	// IncidentID *uint
 	// Incident   Incident
 }
+
+type Assessment struct {
+	gorm.Model
+
+	Symptom      string
+	SymptomLevel uint
+	Datetime     time.Time
+
+	// PatientID  *uint
+	// Patient	  Patient
+
+	// RecorderID *uint
+	// Recorder   Employee
+
+	// IncidentID *uint
+	// Incident   Incident
+}
