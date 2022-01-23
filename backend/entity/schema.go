@@ -81,3 +81,30 @@ type AmbulanceCheck struct {
 	RecorderID *uint
 	//Recorder   Employee `gorm:"references:id"`
 }
+
+type Illness struct {
+	gorm.Model
+	Value    string
+	Incident []Incident `gorm:"foreignKey:IllnessID"`
+}
+
+type Incident struct {
+	gorm.Model
+	Title         string
+	Informer      string
+	Numberpatient int
+	Location      string
+	Datetime      time.Time
+	// EmployeeID    *uint
+	// Employee      Employee
+	IllnessID *uint
+	Illness   Illness
+	UrgencyID *uint
+	Urgency   Urgency
+}
+
+type Urgency struct {
+	gorm.Model
+	Value    string
+	Incident []Incident `gorm:"foreignKey:UrgencyID"`
+}
