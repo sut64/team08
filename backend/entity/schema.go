@@ -63,3 +63,21 @@ type Assessment struct {
 	// IncidentID *uint
 	// Incident   Incident
 }
+
+type AmbulanceCheck struct {
+	gorm.Model
+	DateTime time.Time
+
+	Cleanliness    float32
+	Equipmentcheck bool
+	Carcheck       bool
+	Note           string
+
+	//AmbulanceID ทำหน้าที่เป็น FK
+	AmbulanceID *uint
+	//Ambulance   Ambulance `gorm:"references:id"`
+
+	//RecorderID ทำหน้าที่เป็น FK
+	RecorderID *uint
+	//Recorder   Employee `gorm:"references:id"`
+}
