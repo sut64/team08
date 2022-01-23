@@ -63,3 +63,37 @@ type Assessment struct {
 	// IncidentID *uint
 	// Incident   Incident
 }
+type Ambulance struct {
+	gorm.Model
+	CarNumber    int
+	Registration string
+	DateTime     time.Time
+
+	StatusID *uint
+	Status   Status `gorm:"references:id"`
+
+	AmbulanceTypeID *uint
+	AmbulanceType   AmbulanceType `gorm:"references:id"`
+
+	EmployeeID *uint
+	Employee   Employee `gorm:"references:id"`
+}
+type Status struct {
+	gorm.Model
+	Detail  string
+	Records []Ambulance `gorm:"foreignKey:StatusID"`
+}
+type AmbulanceType struct {
+	gorm.Model
+	Name    string
+	Detail  string
+	Records []Ambulance `gorm:"foreignKey:AmbulanceTypeID"`
+}
+type Employee struct {
+	gorm.Model
+	Name     string
+	Tel      string
+	Email    string `gorm:"uniqueIndex"`
+	Password string
+	Records  []Ambulance `gorm:"foreignKey:EmployeeID"`
+}
