@@ -21,14 +21,14 @@ type AmbulanceOnDuty struct {
 	OnDutyDate time.Time
 	Passenger  uint
 
-	// AmbulanceID *uint
-	// Ambulance   Ambulance
+	AmbulanceID *uint
+	Ambulance   Ambulance
 
-	// RecorderID *uint
-	// Recorder   Employee
+	RecorderID *uint
+	Recorder   Employee
 
-	// IncidentID *uint
-	// Incident   Incident
+	IncidentID *uint
+	Incident   Incident
 }
 
 type AmbulanceArrival struct {
@@ -38,10 +38,10 @@ type AmbulanceArrival struct {
 	DateTime         time.Time
 
 	RecorderID *uint
-	//Recorder   Employee
+	Recorder   Employee
 
 	PatientID *uint
-	//Patient	Patient
+	Patient   Patient
 
 	AmbulanceOnDutyID *uint
 	AmbulanceOnDuty   AmbulanceOnDuty
@@ -54,14 +54,14 @@ type Assessment struct {
 	SymptomLevel uint
 	Datetime     time.Time
 
-	// PatientID  *uint
-	// Patient	  Patient
+	PatientID *uint
+	Patient   Patient
 
-	// RecorderID *uint
-	// Recorder   Employee
+	RecorderID *uint
+	Recorder   Employee
 
-	// IncidentID *uint
-	// Incident   Incident
+	IncidentID *uint
+	Incident   Incident
 }
 type Ambulance struct {
 	gorm.Model
@@ -96,4 +96,49 @@ type Employee struct {
 	Email    string `gorm:"uniqueIndex"`
 	Password string
 	Records  []Ambulance `gorm:"foreignKey:EmployeeID"`
+}
+
+type AmbulanceCheck struct {
+	gorm.Model
+	DateTime time.Time
+
+	Cleanliness    float32
+	Equipmentcheck bool
+	Carcheck       bool
+	Note           string
+
+	//AmbulanceID ทำหน้าที่เป็น FK
+	AmbulanceID *uint
+	Ambulance   Ambulance `gorm:"references:id"`
+
+	//RecorderID ทำหน้าที่เป็น FK
+	RecorderID *uint
+	Recorder   Employee `gorm:"references:id"`
+}
+
+type Illness struct {
+	gorm.Model
+	Value    string
+	Incident []Incident `gorm:"foreignKey:IllnessID"`
+}
+
+type Incident struct {
+	gorm.Model
+	Title         string
+	Informer      string
+	Numberpatient int
+	Location      string
+	Datetime      time.Time
+	EmployeeID    *uint
+	Employee      Employee
+	IllnessID     *uint
+	Illness       Illness
+	UrgencyID     *uint
+	Urgency       Urgency
+}
+
+type Urgency struct {
+	gorm.Model
+	Value    string
+	Incident []Incident `gorm:"foreignKey:UrgencyID"`
 }
