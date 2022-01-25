@@ -9,9 +9,10 @@ import (
 type Patient struct {
 	gorm.Model
 
-	Name  string
-	Tel   string
-	Email string
+	Name        string
+	Tel         string
+	Email       string
+	Assessments []Assessment `gorm:"foreignKey:PatientID"`
 }
 
 type AmbulanceOnDuty struct {
@@ -55,13 +56,13 @@ type Assessment struct {
 	Datetime     time.Time
 
 	PatientID *uint
-	Patient   Patient
+	Patient   Patient `gorm:"references:id"`
 
 	RecorderID *uint
-	Recorder   Employee
+	Recorder   Employee `gorm:"references:id"`
 
 	IncidentID *uint
-	Incident   Incident
+	Incident   Incident `gorm:"references:id"`
 }
 type Ambulance struct {
 	gorm.Model
@@ -91,11 +92,12 @@ type AmbulanceType struct {
 }
 type Employee struct {
 	gorm.Model
-	Name     string
-	Tel      string
-	Email    string `gorm:"uniqueIndex"`
-	Password string
-	Records  []Ambulance `gorm:"foreignKey:EmployeeID"`
+	Name        string
+	Tel         string
+	Email       string `gorm:"uniqueIndex"`
+	Password    string
+	Records     []Ambulance  `gorm:"foreignKey:EmployeeID"`
+	Assessments []Assessment `gorm:"foreignKey:RecorderID"`
 }
 
 type AmbulanceCheck struct {
@@ -135,6 +137,7 @@ type Incident struct {
 	Illness       Illness
 	UrgencyID     *uint
 	Urgency       Urgency
+	Assessments   []Assessment `gorm:"foreignKey:IncidentID"`
 }
 
 type Urgency struct {
