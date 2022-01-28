@@ -241,17 +241,21 @@ const Alert = (props: AlertProps) => {
             </Grid>
             <Grid container spacing={3} className={classes.root}>
             <Grid item xs={6}>
-                <p>จำนวนผู้ที่นั่งรถกลับ *ไม่รวมพนักงาน</p>
                 <FormControl fullWidth variant="outlined">
-                  <TextField
-                    id="Number_of_passenger"
-                    variant="outlined"
-                    type="int"
-                    size="medium"
-                    placeholder="กรุณากรอกจำนวนผู้นั่งรถกลับ"
-                    value={ambulancearrival.Number_of_passenger || ""}
-                    onChange={handleInputChange}
-                  />
+                    <p>จำนวนผู้ที่นั่งรถกลับ *ไม่รวมพนักงาน</p>
+                    <TextField
+                      id="Number_of_passenger"
+                      variant="outlined"
+                      type="number"
+                      size="medium"
+                      InputProps={{ inputProps: { min: 1 } }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      placeholder="กรุณากรอกจำนวนผู้นั่งรถกลับ"
+                      value={ambulancearrival.Number_of_passenger}
+                      onChange={handleInputChange}
+                    />
                 </FormControl>
               </Grid>
             <Grid item xs={6}>

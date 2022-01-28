@@ -58,9 +58,9 @@ func main() {
 			protected.GET("/ambulanceonduties", controller.ListAmbulanceOnDutys)
 			protected.GET("/amnlunceonduty/:id", controller.GetAmbulanceOnDuty)
 			protected.GET("/ambulanceonduties/ambulance", controller.ListAmbulanceOnDutyAmbulance)
-			//protected.POST("/ambulanceondutise", controller.CreateAmbulanceOnDuty)
-			//protected.PATCH("/ambulanceondutise", controller.UpdateAmbulanceOnDuty)
-			//protected.DELETE("/ambulanceondutise/:id", controller.DeleteAmbulanceOnDuty)
+			protected.POST("/ambulanceonduties/:id", controller.CreateAmbulanceOnDuty)
+			protected.DELETE("/ambulanceonduty/:id", controller.DeleteAmbulanceOnDuty)
+			protected.GET("/ambulancesForOnDuty", controller.ListAmbulancesForOnDuty)
 
 			// Patient Routes
 			protected.GET("/patients", controller.ListPatients)

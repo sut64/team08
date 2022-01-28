@@ -33,6 +33,8 @@ import AddIcon from "@material-ui/icons/Add";
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import TocIcon from '@material-ui/icons/Toc';
 import BallotIcon from '@material-ui/icons/Ballot';
+import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+import BuildIcon from '@material-ui/icons/Build';
 
 import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
 import Home from "./components/Home";
@@ -44,6 +46,8 @@ import IncidentCreate from "./components/IncidentCreate";
 import IncidentShow from "./components/IncidentShow"
 import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
 import AssessmentCreate from "./components/AssessmentForm";
+import AmbulanceOnDutyCreate from "./components/AmbulanceOnDuty";
+import AmbulanceOnDutyDisplay from "./components/AmbulanceOnDutyDisplay";
 
  
 const drawerWidth = 240;
@@ -133,15 +137,15 @@ export default function MiniDrawer() {
   };
 
   const menu = [
-    
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "สร้างข้อมูลรถโรงพยาบาล", icon: <AddIcon />, path: "/ambulance/create" },
+    { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
     { name: "การรับเหตุ", icon: <ReceiptIcon />, path: "/incident/create" },
     { name: "แสดงข้อมูลการรับเหตุ", icon: <TocIcon />, path: "/incident/show" },
-    { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
     { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
+    { name: "การรถโรงพยาบาลออกไปปฏิบัติหน้าที่", icon: <AccessAlarmIcon />, path: "/ambulanceonduty/display" },
     { name: "ประเมินอาการผู้ป่วย", icon: <BallotIcon />, path: "/assessment/create" },
-    { name: "ตรวจเช็คความเรียบร้อย", icon: <AddIcon />, path: "/ambulancecheck" },
+    { name: "ตรวจเช็คความเรียบร้อย", icon: <BuildIcon />, path: "/ambulancecheck" },
   ];
 
   useEffect(() => {
@@ -243,6 +247,8 @@ export default function MiniDrawer() {
               <Route exact path="/assessment/create" component={AssessmentCreate}/>
               <Route exact path="/ambulancecheck" component={AmbulanceChecks}/>
               <Route exact path="/ambulancecheck/create" component={AmbulanceCheckCreate}/>
+              <Route exact path="/ambulanceonduty/create" component={AmbulanceOnDutyCreate}/>
+              <Route exact path="/ambulanceonduty/display" component={AmbulanceOnDutyDisplay}/>
             </Switch>
           </div>
         </main>

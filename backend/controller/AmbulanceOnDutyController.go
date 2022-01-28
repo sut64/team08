@@ -1,44 +1,3 @@
-// package controller
-
-// import (
-// 	"net/http"
-
-// 	"github.com/gin-gonic/gin"
-// 	"github.com/sut64/team08/entity"
-// )
-
-// // func CreateAmbulanceOnDuty(c *gin.Context) {
-// // 	var ambulanceonduty entity.AmbulanceOnDuty
-// // 	if err := c.ShouldBindJSON(&ambulanceonduty); err != nil {
-// // 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// // 		return
-// // 	}
-// // 	if err := entity.DB().Create(&ambulanceonduty).Error; err != nil {
-// // 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// // 		return
-// // 	}
-// // 	c.JSON(http.StatusOK, gin.H{"data": ambulanceonduty})
-// // }
-
-// func GetAmbulanceOnDuty(c *gin.Context) {
-// 	var ambulanceonduty entity.AmbulanceOnDuty
-// 	id := c.Param("id")
-// 	if err := entity.DB().Preload("Ambulance").Raw("SELECT * FROM ambulance_on_duties WHERE id = ?", id).Scan(&ambulanceonduty).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-// 	c.JSON(http.StatusOK, gin.H{"data": ambulanceonduty})
-// }
-
-// func ListAmbulanceOnDuties(c *gin.Context) {
-// 	var ambulanceondutyies []entity.AmbulanceOnDuty
-// 	if err := entity.DB().Preload("Ambulance").Raw("SELECT * FROM ambulance_on_duties").Scan(&ambulanceondutyies).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-// 	c.JSON(http.StatusOK, gin.H{"data": ambulanceondutyies})
-// }
-
 package controller
 
 import (
@@ -88,6 +47,13 @@ func CreateAmbulanceOnDuty(c *gin.Context) {
 		return
 	}
 
+	id := c.Param("id")
+
+	if err := entity.DB().Exec("UPDATE ambulances SET status_id = 2 WHERE id = ?", id); err.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "AmbulanceOnDuty not found"})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{"data": AOD})
 }
 
@@ -113,33 +79,12 @@ func ListAmbulanceOnDutys(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": AmbulanceOnDutys})
-
-}
-
-func ListAmbulanceOnDutyAmbulance(c *gin.Context) {
-	var ambulanceonduty []entity.AmbulanceOnDuty
-	if err := entity.DB().Preload("Ambulance").Preload("Recorder").Preload("Incident").Raw("SELECT aod.id, aod.ambulance_id, aod.ambulance_id, aod.recorder_id, aod.on_duty_date, aod.incident_id, aod.code, aod.passenger FROM ambulance_on_duties aod LEFT JOIN ambulance_arrivals aa ON aod.id = aa.ambulance_on_duty_id WHERE aa.ambulance_on_duty_id is NULL").Find(&ambulanceonduty).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{"data": ambulanceonduty})
 }
 
 func DeleteAmbulanceOnDuty(c *gin.Context) {
 	id := c.Param("id")
 
 	if tx := entity.DB().Exec("DELETE FROM ambulance_on_dutys WHERE id = ?", id); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "AmbulanceOnDuty not found"})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{"data": id})
-}
-
-func UpdateStatusAmbulance(c *gin.Context) {
-	id := c.Param("id")
-
-	if err := entity.DB().Exec("UPDATE ambulances SET status_id = 2 WHERE id = ?", id); err.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "AmbulanceOnDuty not found"})
 		return
 	}
@@ -156,4 +101,13 @@ func ListAmbulancesForOnDuty(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": Ambulances})
+}
+
+func ListAmbulanceOnDutyAmbulance(c *gin.Context) {
+	var ambulanceonduty []entity.AmbulanceOnDuty
+	if err := entity.DB().Preload("Ambulance").Preload("Recorder").Preload("Incident").Raw("SELECT aod.id, aod.ambulance_id, aod.ambulance_id, aod.recorder_id, aod.on_duty_date, aod.incident_id, aod.code, aod.passenger FROM ambulance_on_duties aod LEFT JOIN ambulance_arrivals aa ON aod.id = aa.ambulance_on_duty_id WHERE aa.ambulance_on_duty_id is NULL").Find(&ambulanceonduty).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": ambulanceonduty})
 }
