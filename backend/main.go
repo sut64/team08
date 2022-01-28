@@ -83,6 +83,13 @@ func main() {
 			protected.PATCH("/ambulancechecks", controller.UpdateAmbulanceCheck)
 			protected.DELETE("/ambulancechecks/:id", controller.DeleteAmbulanceCheck)
 
+			// Problem Routes
+			protected.GET("/problems", controller.ListProblems)
+			protected.GET("/problem/:id", controller.GetProblem)
+			protected.POST("/problems", controller.CreateProblem)
+			protected.PATCH("/problems", controller.UpdateProblem)
+			protected.DELETE("/problems/:id", controller.DeleteProblem)
+
 		}
 	}
 

@@ -118,7 +118,7 @@ function AmbulanceChecks() {
               {ambulancechecks.map((item: AmbulanceChecksInterface) => (
                 <TableRow key={item.ID}>
                   <TableCell align="center">{item.ID}</TableCell>
-                  <TableCell align="center">{item.Employee.ID}</TableCell>
+                  <TableCell align="center">{item.Recorder.ID}</TableCell>
                   <TableCell align="center">{item.Ambulance.ID}</TableCell>
                   <TableCell align="center">{item.Problem.ID}</TableCell>
                   <TableCell align="center">{item.DocCode}</TableCell>

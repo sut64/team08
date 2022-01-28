@@ -154,12 +154,12 @@ function AmbulanceCheckCreate() {
 
   function submit() {
     let data = {
-      EmployeeID: convertType(employees?.ID),
+      RecorderID: convertType(employees?.ID),
       AmbulanceID: convertType(ambulancecheck.AmbulanceID),
       ProblemID: convertType(ambulancecheck.ProblemID),
       DocCode: convertType(ambulancecheck.DocCode),
       Severity: convertType(ambulancecheck.Severity),
-      Note: convertType(ambulancecheck.Note),
+      Note: ambulancecheck.Note ?? "",
       DateAndTime: selectedDate,
     };
 
@@ -218,7 +218,7 @@ function AmbulanceCheckCreate() {
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDateTimePicker
                                     name="DateAndTime"
-                                    value={now}
+                                    value={selectedDate}
                                     onChange={handleDateChange}
                                     label="กรุณาเลือกวันที่"
                                     format="yyyy-MM-dd hh:mm"
@@ -234,7 +234,7 @@ function AmbulanceCheckCreate() {
                             <Select
                                 native
                                 disabled
-                                value={ambulancecheck.EmployeeID}
+                                value={ambulancecheck.RecorderID}
                             >
                                 <option aria-label="None" value="">
                                   {employees?.Name}

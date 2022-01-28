@@ -44,7 +44,7 @@ func CreateAmbulanceArrival(c *gin.Context) {
 		Distance:            ambulancearrival.Distance,
 		Number_of_passenger: ambulancearrival.Number_of_passenger,
 		DateTime:            ambulancearrival.DateTime,
-		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty
+		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
 		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
 		Recorder:            employee,        // โยงความสัมพันธ์กับ Entity Employee
 	}

@@ -9,8 +9,8 @@ export interface AmbulanceChecksInterface {
     AmbulanceID: number,
     Ambulance: AmbulancesInterface,
 
-    EmployeeID: number,
-    Employee: EmployeesInterface,
+    RecorderID: number,
+    Recorder: EmployeesInterface,
 
     ProblemID: number,
     Problem: ProblemsInterface,

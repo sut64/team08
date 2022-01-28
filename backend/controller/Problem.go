@@ -42,7 +42,7 @@ func ListProblems(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": problems})
 }
 
-func DeleteProblemt(c *gin.Context) {
+func DeleteProblem(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM problems WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "problem not found"})

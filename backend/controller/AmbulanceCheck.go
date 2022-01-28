@@ -25,7 +25,12 @@ func CreateAmbulanceCheck(c *gin.Context) {
 	}
 
 	if tx := entity.DB().Where("id = ?", ambulancecheck.AmbulanceID).First(&ambulance); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"ambulance": "ambulance not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulance not found"})
+		return
+	}
+
+	if tx := entity.DB().Where("id = ?", ambulancecheck.ProblemID).First(&problem); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "problem not found"})
 		return
 	}
 
