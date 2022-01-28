@@ -47,6 +47,14 @@ func main() {
 			protected.PATCH("/employees", controller.UpdateEmployee)
 			protected.DELETE("/employees/:id", controller.DeleteEmployee)
 
+			// Illnesses Routes
+			protected.GET("/illnesses", controller.ListIllnesses)
+			// Incident Routes
+			protected.POST("/incidents", controller.CreateIncident)
+			protected.GET("/incidents", controller.ListIncidents)
+			// Urgency Routes
+			protected.GET("/urgencies", controller.ListUrgencies)
+
 		}
 	}
 

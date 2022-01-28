@@ -122,4 +122,39 @@ func SetupDatabase() {
 		DateTime:     time.Now(),
 	}
 	db.Model(&Ambulance{}).Create(&am2)
+
+	// Illness
+	death := Illness{
+		Value: "ไม่ได้สติ",
+	}
+	db.Model(&Illness{}).Create(&death)
+
+	// Urgency
+	urfast := Urgency{
+		Value: "เร็ว (Fast)",
+	}
+	db.Model(&Urgency{}).Create(&urfast)
+
+	urmedium := Urgency{
+		Value: "ปานกลาง (Medium)",
+	}
+	db.Model(&Urgency{}).Create(&urmedium)
+
+	urslow := Urgency{
+		Value: "ช้า (Slow)",
+	}
+	db.Model(&Urgency{}).Create(&urslow)
+
+	// Incident
+	// 1
+	db.Model(&Incident{}).Create(&Incident{
+		Title:         "ทดสอบ",
+		Informer:      "นายปรเมต สมอะไร",
+		Numberpatient: 2,
+		Location:      "บ้านปรเมต",
+		Datetime:      time.Now(),
+		Employee:      porn,
+		Illness:       death,
+		Urgency:       urfast,
+	})
 }
