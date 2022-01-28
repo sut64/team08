@@ -78,6 +78,31 @@ func SetupDatabase() {
 	db.Raw("SELECT * FROM employees WHERE email = ?", "naruemon@gmail.com").Scan(&kluy)
 	db.Raw("SELECT * FROM employees WHERE email = ?", "bbb@gmail.com").Scan(&Phupha)
 
+	//Patient
+	db.Model(&Patient{}).Create(&Patient{
+		Name:  "นางสาวพร มณีวรรณ1",
+		Email: "porn1@gmail.com",
+		Tel:   "0883322456",
+	})
+	db.Model(&Patient{}).Create(&Patient{
+		Name:  "นายสม จันทร์เพ็ญ1",
+		Email: "som1@gmail.com",
+		Tel:   "0885548900",
+	})
+	db.Model(&Patient{}).Create(&Patient{
+		Name:  "นางสาวกล้วย ไชยวาที1",
+		Email: "naruemon1@gmail.com",
+		Tel:   "0610091572",
+	})
+
+	var porn1 Patient
+	var som1 Patient
+	var kluy1 Patient
+
+	db.Raw("SELECT * FROM patients WHERE email = ?", "porn1@gmail.com").Scan(&porn1)
+	db.Raw("SELECT * FROM patients WHERE email = ?", "som1@gmail.com").Scan(&som1)
+	db.Raw("SELECT * FROM patients WHERE email = ?", "naruemon1@gmail.com").Scan(&kluy1)
+
 	//status
 	available := Status{
 		Detail: "ว่าง",
@@ -123,6 +148,46 @@ func SetupDatabase() {
 	}
 	db.Model(&Ambulance{}).Create(&am2)
 
+	am3 := Ambulance{
+		CarNumber:    102,
+		Registration: "อd 7467",
+		DateTime:     time.Now(),
+	}
+	db.Model(&Ambulance{}).Create(&am3)
+
+	// AmbulanceOnDuty
+	AmbulanceOnDuty3 := AmbulanceOnDuty{
+		Code:       "12",
+		Ambulance:  am2,
+		Recorder:   som,
+		OnDutyDate: time.Time{},
+	}
+	db.Model(&AmbulanceOnDuty{}).Create(&AmbulanceOnDuty3)
+
+	AmbulanceOnDuty2 := AmbulanceOnDuty{
+		Code:       "12",
+		Ambulance:  am1,
+		Recorder:   kluy,
+		OnDutyDate: time.Time{},
+	}
+	db.Model(&AmbulanceOnDuty{}).Create(&AmbulanceOnDuty2)
+
+	AmbulanceOnDuty1 := AmbulanceOnDuty{
+		Code:       "12",
+		Ambulance:  am3,
+		Recorder:   Phupha,
+		OnDutyDate: time.Time{},
+	}
+	db.Model(&AmbulanceOnDuty{}).Create(&AmbulanceOnDuty1)
+
+	AmbulanceArrivsl1 := AmbulanceArrival{
+		Number_of_passenger:       2,
+		Distance: 2.8,
+		DateTime: time.Time{},
+		Recorder:   Phupha,
+		AmbulanceOnDuty: AmbulanceOnDuty3,
+	}
+	db.Model(&AmbulanceArrival{}).Create(&AmbulanceArrivsl1)
 	// Illness
 	death := Illness{
 		Value: "ไม่ได้สติ",

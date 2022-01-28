@@ -3,16 +3,18 @@ package entity
 import (
 	"time"
 
+	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
 
 type Patient struct {
 	gorm.Model
 
-	Name        string
-	Tel         string
-	Email       string
-	Assessments []Assessment `gorm:"foreignKey:PatientID"`
+	Name             string
+	Tel              string
+	Email            string
+	Assessments      []Assessment       `gorm:"foreignKey:PatientID"`
+	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:PatientID"`
 }
 
 type AmbulanceOnDuty struct {
@@ -28,24 +30,35 @@ type AmbulanceOnDuty struct {
 	RecorderID *uint
 	Recorder   Employee
 
-	IncidentID *uint
-	Incident   Incident
+	IncidentID       *uint
+	Incident         Incident
+	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:AmbulanceOnDutyID"`
 }
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_people int
-	Distance         float32
-	DateTime         time.Time
+	Number_of_passenger int `valid:"Positivenumber"`
+	Distance          float32
+	DateTime          time.Time
 
 	RecorderID *uint
-	Recorder   Employee
+	Recorder   Employee `gorm:"references:id"`
 
 	PatientID *uint
-	Patient   Patient
+	Patient   Patient `gorm:"references:id"`
 
-	AmbulanceOnDutyID *uint
-	AmbulanceOnDuty   AmbulanceOnDuty
+	AmbulanceOnDutyID *uint `gorm:"uniqueIndex"`
+	AmbulanceOnDuty   AmbulanceOnDuty `gorm:"references:id"`
+}
+
+func init() {
+	govalidator.TagMap["Positivenumber"] = govalidator.Validator(func(str string) bool {
+		if str[0] == '-' || str == "0" {
+			return false
+		} else {
+			return true
+		}
+	})
 }
 
 type Assessment struct {
@@ -99,6 +112,7 @@ type Employee struct {
 	Records     []Ambulance  `gorm:"foreignKey:EmployeeID"`
 	Assessments []Assessment `gorm:"foreignKey:RecorderID"`
 	Incident    []Incident   `gorm:"foreignKey:EmployeeID"`
+	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:RecorderID"`
 }
 
 type AmbulanceCheck struct {
