@@ -98,6 +98,7 @@ type Employee struct {
 	Password    string
 	Records     []Ambulance  `gorm:"foreignKey:EmployeeID"`
 	Assessments []Assessment `gorm:"foreignKey:RecorderID"`
+	Incident    []Incident   `gorm:"foreignKey:EmployeeID"`
 }
 
 type AmbulanceCheck struct {

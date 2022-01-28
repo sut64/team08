@@ -26,6 +26,8 @@ import Button from "@material-ui/core/Button";
 import HomeIcon from "@material-ui/icons/Home";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import AddIcon from "@material-ui/icons/Add";
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import TocIcon from '@material-ui/icons/Toc';
 
 
 import Home from "./components/Home";
@@ -33,6 +35,9 @@ import Ambulance from "./components/Ambulance";
 import AmbulanceCreate from "./components/AmbulanceCreate";
 import SignIn from "./components/SignIn";
 import Navbar from "./components/Navbar";
+import IncidentCreate from "./components/IncidentCreate";
+import IncidentShow from "./components/IncidentShow"
+
 
 const drawerWidth = 240;
 
@@ -123,6 +128,8 @@ export default function MiniDrawer() {
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "สร้างข้อมูลรถโรงพยาบาล", icon: <AddIcon />, path: "/ambulance/create" },
+    { name: "การรับเหตุ", icon: <ReceiptIcon />, path: "/incident/create" },
+    { name: "แสดงข้อมูลการรับเหตุ", icon: <TocIcon />, path: "/incident/show" },
     { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
   ];
 
@@ -167,8 +174,9 @@ export default function MiniDrawer() {
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                  System Analysis and Design
+                  ระบบรถโรงพยาบาล
                 </Typography>
+                
                 <Button color="inherit" onClick={signout}>
                   ออกจากระบบ
                 </Button>
@@ -217,12 +225,9 @@ export default function MiniDrawer() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/ambulances" component={Ambulance} />
-              <Route exact path="/ambulances/create" component={AmbulanceCreate} />
-              <Route
-                exact
-                path="/ambulance/create"
-                component={AmbulanceCreate}
-              />
+              <Route exact path="/ambulance/create" component={AmbulanceCreate} />
+              <Route exact path="/incident/show" component={IncidentShow} />
+              <Route exact path="/incident/create" component={IncidentCreate} />
             </Switch>
           </div>
         </main>
