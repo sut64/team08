@@ -76,6 +76,13 @@ func main() {
 			// Urgency Routes
 			protected.GET("/urgencies", controller.ListUrgencies)
 
+			// Assessment Routes
+			protected.GET("/assessments", controller.ListAssessment)
+			protected.GET("/assessment/:id", controller.GetAssessment)
+			protected.POST("/assessments", controller.CreateAssessment)
+			protected.PATCH("/assessments", controller.UpdateAssessment)
+			protected.DELETE("/assessments/:id", controller.DeleteAssessment)
+
 		}
 	}
 
