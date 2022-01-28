@@ -10,7 +10,7 @@ import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import { SignInInterface } from "../models/ISignIn";
+import { SigninInterface } from "../models/ISignin";
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SignIn() {
   const classes = useStyles();
-  const [signin, setSignin] = useState<Partial<SignInInterface>>({});
+  const [signin, setSignin] = useState<Partial<SigninInterface>>({});
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
@@ -100,6 +100,7 @@ function SignIn() {
           Sign in
 
         </Typography>
+        *username:porn@gmail.com, password:123456*
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"

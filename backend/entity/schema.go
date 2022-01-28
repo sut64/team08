@@ -105,12 +105,13 @@ type AmbulanceType struct {
 }
 type Employee struct {
 	gorm.Model
-	Name             string
-	Tel              string
-	Email            string `gorm:"uniqueIndex"`
-	Password         string
-	Records          []Ambulance        `gorm:"foreignKey:EmployeeID"`
-	Assessments      []Assessment       `gorm:"foreignKey:RecorderID"`
+	Name        string
+	Tel         string
+	Email       string `gorm:"uniqueIndex"`
+	Password    string
+	Records     []Ambulance  `gorm:"foreignKey:EmployeeID"`
+	Assessments []Assessment `gorm:"foreignKey:RecorderID"`
+	Incident    []Incident   `gorm:"foreignKey:EmployeeID"`
 	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:RecorderID"`
 }
 

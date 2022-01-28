@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
@@ -24,10 +23,21 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 
-import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
+import HomeIcon from "@material-ui/icons/Home";
+import ViewListIcon from "@material-ui/icons/ViewList";
+import AddIcon from "@material-ui/icons/Add";
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import TocIcon from '@material-ui/icons/Toc';
 
+import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
+import Home from "./components/Home";
+import Ambulance from "./components/Ambulance";
+import AmbulanceCreate from "./components/AmbulanceCreate";
+import SignIn from "./components/Signin";
+import Navbar from "./components/Navbar";
+import IncidentCreate from "./components/IncidentCreate";
+import IncidentShow from "./components/IncidentShow"
 import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
-import SignIn from "./components/SignIn";
 
 const drawerWidth = 240;
 
@@ -102,7 +112,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function App() {
+export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -116,6 +126,11 @@ export default function App() {
   };
 
   const menu = [
+    { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
+    { name: "สร้างข้อมูลรถโรงพยาบาล", icon: <AddIcon />, path: "/ambulance/create" },
+    { name: "การรับเหตุ", icon: <ReceiptIcon />, path: "/incident/create" },
+    { name: "แสดงข้อมูลการรับเหตุ", icon: <TocIcon />, path: "/incident/show" },
+    { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
     { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
   ];
 
@@ -134,9 +149,9 @@ export default function App() {
     localStorage.clear();
     window.location.href = "/";
   };
-  
- return (
-  <div className={classes.root}>
+
+  return (
+    <div className={classes.root}>
       <Router>
         <CssBaseline />
         {token && (
@@ -160,10 +175,9 @@ export default function App() {
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                  <option aria-labe1="None" value="">
-                    ระบบห้องพัก
-                  </option>
+                  ระบบรถโรงพยาบาล
                 </Typography>
+                
                 <Button color="inherit" onClick={signout}>
                   ออกจากระบบ
                 </Button>
@@ -209,12 +223,17 @@ export default function App() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <div>
-          <Switch>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/ambulances" component={Ambulance} />
+              <Route exact path="/ambulance/create" component={AmbulanceCreate} />
+              <Route exact path="/incident/show" component={IncidentShow} />
+              <Route exact path="/incident/create" component={IncidentCreate} />
               <Route exact path="/ambulancearrival/create" component={AmbulanceArrivalCreate}/>
-          </Switch>
+            </Switch>
           </div>
         </main>
       </Router>
     </div>
- );
+  );
 }
