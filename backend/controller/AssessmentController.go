@@ -48,7 +48,7 @@ func DeleteAssessment(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
-func Updateassessment(c *gin.Context) {
+func UpdateAssessment(c *gin.Context) {
 	var assessment entity.Assessment
 	if err := c.ShouldBindJSON(&assessment); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

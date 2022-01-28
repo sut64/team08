@@ -32,6 +32,7 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import AddIcon from "@material-ui/icons/Add";
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import TocIcon from '@material-ui/icons/Toc';
+import BallotIcon from '@material-ui/icons/Ballot';
 
 import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
 import Home from "./components/Home";
@@ -42,6 +43,8 @@ import Navbar from "./components/Navbar";
 import IncidentCreate from "./components/IncidentCreate";
 import IncidentShow from "./components/IncidentShow"
 import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
+import AssessmentCreate from "./components/AssessmentForm";
+
  
 const drawerWidth = 240;
 
@@ -137,6 +140,7 @@ export default function MiniDrawer() {
     { name: "แสดงข้อมูลการรับเหตุ", icon: <TocIcon />, path: "/incident/show" },
     { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
     { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
+    { name: "ประเมินอาการผู้ป่วย", icon: <BallotIcon />, path: "/assessment/create" },
     { name: "ตรวจเช็คความเรียบร้อย", icon: <AddIcon />, path: "/ambulancecheck" },
   ];
 
@@ -236,6 +240,7 @@ export default function MiniDrawer() {
               <Route exact path="/incident/show" component={IncidentShow} />
               <Route exact path="/incident/create" component={IncidentCreate} />
               <Route exact path="/ambulancearrival/create" component={AmbulanceArrivalCreate}/>
+              <Route exact path="/assessment/create" component={AssessmentCreate}/>
               <Route exact path="/ambulancecheck" component={AmbulanceChecks}/>
               <Route exact path="/ambulancecheck/create" component={AmbulanceCheckCreate}/>
             </Switch>
