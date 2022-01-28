@@ -108,7 +108,7 @@ func SetupDatabase() {
 	}
 	db.Model(&AmbulanceType{}).Create(&Suite)
 
-	// Ambulance
+	//Ambulance
 	am1 := Ambulance{
 		CarNumber:    100,
 		Registration: "กข 523",

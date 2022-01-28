@@ -42,7 +42,7 @@ func GetAmbulanceType(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ?", id).Scan(&ambulancetype).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM ambulance_types WHERE id = ?", id).Scan(&ambulancetype).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
@@ -60,7 +60,7 @@ func ListAmbulancesTypes(c *gin.Context) {
 
 	var ambulancestypes []entity.AmbulanceType
 
-	if err := entity.DB().Raw("SELECT * FROM users").Scan(&ambulancestypes).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM ambulance_types").Scan(&ambulancestypes).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
@@ -78,9 +78,9 @@ func DeleteAmbulanceType(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if tx := entity.DB().Exec("DELETE FROM users WHERE id = ?", id); tx.RowsAffected == 0 {
+	if tx := entity.DB().Exec("DELETE FROM ambulance_types WHERE id = ?", id); tx.RowsAffected == 0 {
 
-		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulancetyp not found"})
 
 		return
 
@@ -106,7 +106,7 @@ func UpdateAmbulanceType(c *gin.Context) {
 
 	if tx := entity.DB().Where("id = ?", ambulancetypes.ID).First(&ambulancetypes); tx.RowsAffected == 0 {
 
-		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulancetyp not found"})
 
 		return
 
