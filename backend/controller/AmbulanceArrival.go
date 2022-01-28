@@ -41,12 +41,12 @@ func CreateAmbulanceArrival(c *gin.Context) {
 
 	// 11: สร้าง AmbulanceArrival
 	aa := entity.AmbulanceArrival{
-		Distance:          ambulancearrival.Distance,
+		Distance:            ambulancearrival.Distance,
 		Number_of_passenger: ambulancearrival.Number_of_passenger,
-		DateTime:          ambulancearrival.DateTime,
-		AmbulanceOnDuty:   ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty
-		Patient:           patient,         // โยงความสัมพันธ์กับ Entity Patient
-		Recorder:          employee,        // โยงความสัมพันธ์กับ Entity Employee
+		DateTime:            ambulancearrival.DateTime,
+		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
+		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
+		Recorder:            employee,        // โยงความสัมพันธ์กับ Entity Employee
 	}
 
 	// 12: บันทึก
@@ -105,4 +105,3 @@ func UpdateAmbulanceArrival(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrival})
 }
-
