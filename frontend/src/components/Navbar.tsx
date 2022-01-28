@@ -39,7 +39,7 @@ function Navbar() {
           </IconButton>
           <Link className={classes.navlink} to="/">
             <Typography variant="h6" className={classes.title}>
-              System Analysis and Design
+              ระบบรถโรงพยาบาล
             </Typography>
           </Link>
         </Toolbar>

@@ -119,10 +119,9 @@ type AmbulanceCheck struct {
 	gorm.Model
 	DateTime time.Time
 
-	Cleanliness    float32
-	Equipmentcheck bool
-	Carcheck       bool
-	Note           string
+	DocCode  string
+	Severity uint
+	Note     string
 
 	//AmbulanceID ทำหน้าที่เป็น FK
 	AmbulanceID *uint
@@ -131,6 +130,9 @@ type AmbulanceCheck struct {
 	//RecorderID ทำหน้าที่เป็น FK
 	RecorderID *uint
 	Recorder   Employee `gorm:"references:id"`
+
+	ProblemID *uint
+	Problem   Problem `gorm:"references:id"`
 }
 
 type Illness struct {
@@ -159,4 +161,9 @@ type Urgency struct {
 	gorm.Model
 	Value    string
 	Incident []Incident `gorm:"foreignKey:UrgencyID"`
+}
+
+type Problem struct {
+	gorm.Model
+	Name string
 }

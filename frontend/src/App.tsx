@@ -23,6 +23,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 
+import PlayIcon from "@material-ui/icons/PlayArrow";
+
+import AmbulanceChecks from "./components/AmbulanceChecks";
+import AmbulanceCheckCreate from "./components/AmbulanceCheckCreate";
 import HomeIcon from "@material-ui/icons/Home";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import AddIcon from "@material-ui/icons/Add";
@@ -41,6 +45,7 @@ import IncidentShow from "./components/IncidentShow"
 import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
 import AssessmentCreate from "./components/AssessmentForm";
 
+ 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -128,6 +133,7 @@ export default function MiniDrawer() {
   };
 
   const menu = [
+    
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "สร้างข้อมูลรถโรงพยาบาล", icon: <AddIcon />, path: "/ambulance/create" },
     { name: "การรับเหตุ", icon: <ReceiptIcon />, path: "/incident/create" },
@@ -135,6 +141,7 @@ export default function MiniDrawer() {
     { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
     { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
     { name: "ประเมินอาการผู้ป่วย", icon: <BallotIcon />, path: "/assessment/create" },
+    { name: "ตรวจเช็คความเรียบร้อย", icon: <AddIcon />, path: "/ambulancecheck" },
   ];
 
   useEffect(() => {
@@ -234,6 +241,8 @@ export default function MiniDrawer() {
               <Route exact path="/incident/create" component={IncidentCreate} />
               <Route exact path="/ambulancearrival/create" component={AmbulanceArrivalCreate}/>
               <Route exact path="/assessment/create" component={AssessmentCreate}/>
+              <Route exact path="/ambulancecheck" component={AmbulanceChecks}/>
+              <Route exact path="/ambulancecheck/create" component={AmbulanceCheckCreate}/>
             </Switch>
           </div>
         </main>

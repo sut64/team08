@@ -82,6 +82,19 @@ func main() {
 			protected.POST("/assessments", controller.CreateAssessment)
 			protected.PATCH("/assessments", controller.UpdateAssessment)
 			protected.DELETE("/assessments/:id", controller.DeleteAssessment)
+			// AmbulanceCheck Routes
+			protected.GET("/ambulancechecks", controller.ListAmbulanceChecks)
+			protected.GET("/ambulancecheck/:id", controller.GetAmbulanceCheck)
+			protected.POST("/ambulancechecks", controller.CreateAmbulanceCheck)
+			protected.PATCH("/ambulancechecks", controller.UpdateAmbulanceCheck)
+			protected.DELETE("/ambulancechecks/:id", controller.DeleteAmbulanceCheck)
+
+			// Problem Routes
+			protected.GET("/problems", controller.ListProblems)
+			protected.GET("/problem/:id", controller.GetProblem)
+			protected.POST("/problems", controller.CreateProblem)
+			protected.PATCH("/problems", controller.UpdateProblem)
+			protected.DELETE("/problems/:id", controller.DeleteProblem)
 
 		}
 	}
