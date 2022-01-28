@@ -20,26 +20,27 @@ type Patient struct {
 type AmbulanceOnDuty struct {
 	gorm.Model
 
-	Code       string
-	OnDutyDate time.Time
-	Passenger  uint
+	Code       string    `valid:"matches(^[D]\\d{8}$),required"`
+	OnDutyDate time.Time `valid:"today"`
+	Passenger  uint      `valid:"required"`
 
 	AmbulanceID *uint
-	Ambulance   Ambulance
+	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
 
 	RecorderID *uint
-	Recorder   Employee
+	Recorder   Employee `gorm:"references:id" valid:"-"`
 
-	IncidentID       *uint
-	Incident         Incident
+	IncidentID *uint
+	Incident   Incident `gorm:"references:id" valid:"-"`
+
 	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:AmbulanceOnDutyID"`
 }
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int `valid:"Positivenumber"`
-	Distance          float32
-	DateTime          time.Time
+	Number_of_passenger uint
+	Distance            float32
+	DateTime            time.Time
 
 	RecorderID *uint
 	Recorder   Employee `gorm:"references:id"`
@@ -47,18 +48,8 @@ type AmbulanceArrival struct {
 	PatientID *uint
 	Patient   Patient `gorm:"references:id"`
 
-	AmbulanceOnDutyID *uint `gorm:"uniqueIndex"`
+	AmbulanceOnDutyID *uint           `gorm:"uniqueIndex"`
 	AmbulanceOnDuty   AmbulanceOnDuty `gorm:"references:id"`
-}
-
-func init() {
-	govalidator.TagMap["Positivenumber"] = govalidator.Validator(func(str string) bool {
-		if str[0] == '-' || str == "0" {
-			return false
-		} else {
-			return true
-		}
-	})
 }
 
 type Assessment struct {
@@ -77,9 +68,10 @@ type Assessment struct {
 	IncidentID *uint
 	Incident   Incident `gorm:"references:id"`
 }
+
 type Ambulance struct {
 	gorm.Model
-	CarNumber    int
+	CarNumber    uint
 	Registration string
 	DateTime     time.Time
 
@@ -105,13 +97,13 @@ type AmbulanceType struct {
 }
 type Employee struct {
 	gorm.Model
-	Name        string
-	Tel         string
-	Email       string `gorm:"uniqueIndex"`
-	Password    string
-	Records     []Ambulance  `gorm:"foreignKey:EmployeeID"`
-	Assessments []Assessment `gorm:"foreignKey:RecorderID"`
-	Incident    []Incident   `gorm:"foreignKey:EmployeeID"`
+	Name             string
+	Tel              string
+	Email            string `gorm:"uniqueIndex"`
+	Password         string
+	Records          []Ambulance        `gorm:"foreignKey:EmployeeID"`
+	Assessments      []Assessment       `gorm:"foreignKey:RecorderID"`
+	Incident         []Incident         `gorm:"foreignKey:EmployeeID"`
 	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:RecorderID"`
 }
 
@@ -145,7 +137,7 @@ type Incident struct {
 	gorm.Model
 	Title         string
 	Informer      string
-	Numberpatient int
+	Numberpatient uint
 	Location      string
 	Datetime      time.Time
 	EmployeeID    *uint
@@ -166,4 +158,20 @@ type Urgency struct {
 type Problem struct {
 	gorm.Model
 	Name string
+}
+
+func init() {
+
+	govalidator.CustomTypeTagMap.Set("today", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+
+		if t.Year() == time.Now().Year() {
+			if int(t.Month()) == int(time.Now().Month()) {
+				if t.Day() == time.Now().Day() {
+					return true
+				}
+			}
+		}
+		return false
+	})
 }
