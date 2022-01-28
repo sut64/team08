@@ -1,22 +1,3 @@
-// import React from "react";
- 
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
-// import Signin from "./components/Signin";
- 
-// export default function App() {
-//  return (
-//    <Router>
-//      <div>
-//        <Routes>
-//         <Route path="/signin" element={<Signin />} />
-//          <Route path="/" element={<AmbulanceArrivalCreate />} />
-//        </Routes>
-//      </div>
-//    </Router>
-//  );
-// }
-
 import { useEffect, useState } from "react";
 import React from "react";
 import clsx from "clsx";
@@ -43,14 +24,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 
-import HomeIcon from "@material-ui/icons/Home";
-import ViewListIcon from "@material-ui/icons/ViewList";
-import AddIcon from "@material-ui/icons/Add";
+import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
 
-// import RoomCreate from "./components/RoomCreate";
-// import SignIn from "./components/SignIn";
-// import Rooms from "./components/Rooms";
-// import Home from "./components/Home";
 import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
 import SignIn from "./components/SignIn";
 
@@ -141,9 +116,7 @@ export default function App() {
   };
 
   const menu = [
-    // { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
-    { name: "Ambulance Arrival", icon: <AddIcon />, path: "/" },
-    // { name: "ข้อมูลห้องพัก", icon: <ViewListIcon />, path: "/rooms" },
+    { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
   ];
 
   useEffect(() => {
@@ -237,10 +210,8 @@ export default function App() {
           <div className={classes.toolbar} />
           <div>
           <Switch>
-              <Route exact path="/" component={AmbulanceArrivalCreate}/>
-              {/* <Route exact path="/roomcreate" component={RoomCreate} />
-              <Route exact path="/rooms" component={Rooms} /> */}
-            </Switch>
+              <Route exact path="/ambulancearrival/create" component={AmbulanceArrivalCreate}/>
+          </Switch>
           </div>
         </main>
       </Router>

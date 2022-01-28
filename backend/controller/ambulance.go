@@ -11,7 +11,7 @@ import (
 func CreateAmbulance(c *gin.Context) {
 
 	var ambulance entity.Ambulance
-	var ambulancestypes entity.AmbulanceType
+	var ambulancetypes entity.AmbulanceType
 	var status entity.Status
 	var employee entity.Employee
 
@@ -22,7 +22,7 @@ func CreateAmbulance(c *gin.Context) {
 	}
 
 	// 8: ค้นหา AmbulanceType ด้วย id
-	if tx := entity.DB().Where("id = ?", ambulance.AmbulanceTypeID).First(&ambulancestypes); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", ambulance.AmbulanceTypeID).First(&ambulancetypes); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulancetype not found"})
 		return
 	}
@@ -38,9 +38,9 @@ func CreateAmbulance(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})
 		return
 	}
-	// 11: สร้าง CheckIn
+	// 11: สร้าง Ambulance
 	ami := entity.Ambulance{
-		AmbulanceType: ambulancestypes,    // โยงความสัมพันธ์กับ Entity AmbulanceType
+		AmbulanceType: ambulancetypes,     // โยงความสัมพันธ์กับ Entity AmbulanceType
 		Status:        status,             // โยงความสัมพันธ์กับ Entity Status
 		Employee:      employee,           // โยงความสัมพันธ์กับ Entity Employee
 		DateTime:      ambulance.DateTime, // ตั้งค่าฟิลด์ Date_time
@@ -63,7 +63,7 @@ func GetAmbulance(c *gin.Context) {
 	var ambulance entity.Ambulance
 	id := c.Param("id")
 
-	if err := entity.DB().Preload("ambulancetype").Preload("status").Preload("employee").Raw("SELECT * FROM ambulance WHERE id = ?", id).Find(&ambulance).Error; err != nil {
+	if err := entity.DB().Preload("AmbulanceType").Preload("Status").Preload("Employee").Raw("SELECT * FROM ambulances WHERE id = ?", id).Find(&ambulance).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -77,7 +77,7 @@ func GetAmbulance(c *gin.Context) {
 func ListAmbulances(c *gin.Context) {
 
 	var ambulances []entity.Ambulance
-	if err := entity.DB().Preload("ambulancetype").Preload("status").Preload("employee").Raw("SELECT * FROM ambulance").Find(&ambulances).Error; err != nil {
+	if err := entity.DB().Preload("AmbulanceType").Preload("Status").Preload("Employee").Raw("SELECT * FROM ambulances").Find(&ambulances).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -91,7 +91,7 @@ func ListAmbulances(c *gin.Context) {
 func DeleteAmbulance(c *gin.Context) {
 
 	id := c.Param("id")
-	if tx := entity.DB().Exec("DELETE FROM ambulance WHERE id = ?", id); tx.RowsAffected == 0 {
+	if tx := entity.DB().Exec("DELETE FROM ambulances WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulance not found"})
 		return
 	}
@@ -114,7 +114,7 @@ func UpdateAmbulance(c *gin.Context) {
 
 	if tx := entity.DB().Where("id = ?", ambulances.ID).First(&ambulances); tx.RowsAffected == 0 {
 
-		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulance not found"})
 
 		return
 

@@ -18,11 +18,11 @@ import {
   KeyboardDateTimePicker,
   } from "@material-ui/pickers";
   import DateFnsUtils from "@date-io/date-fns";
-import { EmployeeInterface } from "../models/IEmployee";
+import { EmployeesInterface } from "../models/IEmployee";
 import { PatientInterface } from "../models/IPatient";
 import { AmbulanceOnDutyInterface } from "../models/IAmbulanceOnDuty";
 import { AmbulanceArrivalInterface } from "../models/IAmbulanceArrival";
-import { AmbulanceInterface } from "../models/IAmbulance";
+import { AmbulancesInterface } from "../models/IAmbulance";
 
 const Alert = (props: AlertProps) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -51,9 +51,9 @@ const Alert = (props: AlertProps) => {
      const [state, setstate] = React.useState('');
      const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
      const [ambulaneonduty, setAmbulanceOnDuty] = useState<AmbulanceOnDutyInterface[]>([]);
-     const [ambulance, setAmbulance] = useState<AmbulanceInterface[]>([]);
+     const [ambulance, setAmbulance] = useState<AmbulancesInterface[]>([]);
      const [patient, setPatient] = useState<PatientInterface[]>([]);
-     const [employee, setEmployee] = useState<EmployeeInterface>();
+     const [employee, setEmployee] = useState<EmployeesInterface>();
      const [ambulancearrival, setAmbulanceArrival] = useState<Partial<AmbulanceArrivalInterface>>(
        {}
      );

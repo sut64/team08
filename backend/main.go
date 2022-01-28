@@ -47,6 +47,27 @@ func main() {
 			protected.PATCH("/employees", controller.UpdateEmployee)
 			protected.DELETE("/employees/:id", controller.DeleteEmployee)
 
+			// AmbulanceArrival Routes
+			protected.GET("/amnluncearrivals", controller.ListAmbulanceArrivals)
+			protected.GET("/amnluncearrival/:id", controller.GetAmbulanceArrival)
+			protected.POST("/amnluncearrivals", controller.CreateAmbulanceArrival)
+			protected.PATCH("/amnluncearrivals", controller.UpdateAmbulanceArrival)
+			protected.DELETE("/amnluncearrivals/:id", controller.DeleteAmbulanceArrival)
+
+			// AmbulanceOnDuty Routes
+			protected.GET("/ambulanceonduties", controller.ListAmbulanceOnDutys)
+			protected.GET("/amnlunceonduty/:id", controller.GetAmbulanceOnDuty)
+			protected.GET("/ambulanceonduties/ambulance", controller.ListAmbulanceOnDutyAmbulance)
+			//protected.POST("/ambulanceondutise", controller.CreateAmbulanceOnDuty)
+			//protected.PATCH("/ambulanceondutise", controller.UpdateAmbulanceOnDuty)
+			//protected.DELETE("/ambulanceondutise/:id", controller.DeleteAmbulanceOnDuty)
+
+			// Patient Routes
+			protected.GET("/patients", controller.ListPatients)
+			protected.GET("/patient/:id", controller.GetPatient)
+			//protected.POST("/patients", controller.CreatePatient)
+			protected.PATCH("/patients", controller.UpdatePatient)
+			protected.DELETE("/patients/:id", controller.DeletePatient)
 		}
 	}
 

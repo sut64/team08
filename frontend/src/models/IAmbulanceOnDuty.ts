@@ -1,4 +1,4 @@
-import { AmbulanceInterface } from "./IAmbulance";
+import { AmbulancesInterface } from "./IAmbulance";
 
 export interface AmbulanceOnDutyInterface {
     ID: number,
@@ -6,5 +6,5 @@ export interface AmbulanceOnDutyInterface {
     OnDutyDate: Date,
     Passenger: string,
     AmbulanceID:      number,
-    Ambulance:        AmbulanceInterface,
+    Ambulance:        AmbulancesInterface,
   }
