@@ -21,7 +21,7 @@ func main() {
 		{
 			// Ambulance Routes
 			protected.GET("/ambulances", controller.ListAmbulances)
-			protected.GET("/ambulance/:id", controller.GetAmbulance)
+			protected.GET("/ambulances/:id", controller.GetAmbulance)
 			protected.POST("/ambulances", controller.CreateAmbulance)
 			protected.PATCH("/ambulances", controller.UpdateAmbulance)
 			protected.DELETE("/ambulances/:id", controller.DeleteAmbulance)
