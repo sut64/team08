@@ -113,16 +113,16 @@ func ListAmbulanceOnDutys(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": AmbulanceOnDutys})
-	
+
 }
 
 func ListAmbulanceOnDutyAmbulance(c *gin.Context) {
-		var ambulanceonduty []entity.AmbulanceOnDuty
-		if err := entity.DB().Preload("Ambulance").Preload("Recorder").Preload("Incident").Raw("SELECT aod.id, aod.ambulance_id, aod.ambulance_id, aod.recorder_id, aod.on_duty_date, aod.incident_id, aod.code, aod.passenger FROM ambulance_on_duties aod LEFT JOIN ambulance_arrivals aa ON aod.id = aa.ambulance_on_duty_id WHERE aa.ambulance_on_duty_id is NULL").Find(&ambulanceonduty).Error; err != nil {
+	var ambulanceonduty []entity.AmbulanceOnDuty
+	if err := entity.DB().Preload("Ambulance").Preload("Recorder").Preload("Incident").Raw("SELECT aod.id, aod.ambulance_id, aod.ambulance_id, aod.recorder_id, aod.on_duty_date, aod.incident_id, aod.code, aod.passenger FROM ambulance_on_duties aod LEFT JOIN ambulance_arrivals aa ON aod.id = aa.ambulance_on_duty_id WHERE aa.ambulance_on_duty_id is NULL").Find(&ambulanceonduty).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
-		}
-		c.JSON(http.StatusOK, gin.H{"data": ambulanceonduty})
+	}
+	c.JSON(http.StatusOK, gin.H{"data": ambulanceonduty})
 }
 
 func DeleteAmbulanceOnDuty(c *gin.Context) {

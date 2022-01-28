@@ -37,10 +37,19 @@ func SetupDatabase() {
 		&Illness{},
 		&Urgency{},
 		&Incident{},
+		&Problem{},
 	)
 
 	db = database
 	password, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
+
+	db.Model(&Problem{}).Create(&Problem{
+		Name: "Car Broken",
+	})
+
+	db.Model(&Problem{}).Create(&Problem{
+		Name: "Equipment Broken",
+	})
 
 	//employee
 	db.Model(&Employee{}).Create(&Employee{
@@ -181,11 +190,11 @@ func SetupDatabase() {
 	db.Model(&AmbulanceOnDuty{}).Create(&AmbulanceOnDuty1)
 
 	AmbulanceArrivsl1 := AmbulanceArrival{
-		Number_of_passenger:       2,
-		Distance: 2.8,
-		DateTime: time.Time{},
-		Recorder:   Phupha,
-		AmbulanceOnDuty: AmbulanceOnDuty3,
+		Number_of_passenger: 2,
+		Distance:            2.8,
+		DateTime:            time.Time{},
+		Recorder:            Phupha,
+		AmbulanceOnDuty:     AmbulanceOnDuty3,
 	}
 	db.Model(&AmbulanceArrival{}).Create(&AmbulanceArrivsl1)
 	// Illness
