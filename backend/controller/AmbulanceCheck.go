@@ -7,39 +7,44 @@ import (
 	"github.com/sut64/team08/entity"
 )
 
-// func CreateAmbulanceCheck(c *gin.Context) {
+func CreateAmbulanceCheck(c *gin.Context) {
 
-// 	var ambulancecheck entity.AmbulanceCheck
-// 	//var employee entity.Employee
-// 	//var ambulance entity.Ambulance
+	var ambulancecheck entity.AmbulanceCheck
+	var employee entity.Employee
+	var ambulance entity.Ambulance
+	var problem entity.Problem
 
-// 	if err := c.ShouldBindJSON(&ambulancecheck); err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
+	if err := c.ShouldBindJSON(&ambulancecheck); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
-// 	//if tx := entity.DB().Where("id = ?", ambulancecheck.RecorderID).First(&employee); tx.RowsAffected == 0 {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})
-// 		return
-// 	}
+	if tx := entity.DB().Where("id = ?", ambulancecheck.RecorderID).First(&employee); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})
+		return
+	}
 
-// 	//if tx := entity.DB().Where("id = ?", ambulancecheck.AmbulanceID).First(&ambulance); tx.RowsAffected == 0 {
-// 		c.JSON(http.StatusBadRequest, gin.H{"ambulance": "am not found"})
-// 		return
-// 	}
+	if tx := entity.DB().Where("id = ?", ambulancecheck.AmbulanceID).First(&ambulance); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"ambulance": "ambulance not found"})
+		return
+	}
 
-// 	ac := entity.AmbulanceCheck{
-// 		DateTime:  ambulancecheck.DateTime.Local(),
-// 	//	Recorder:  employee,
-// 	//	Ambulance: ambulance,
-// 	}
+	ac := entity.AmbulanceCheck{
+		DateTime:  ambulancecheck.DateTime.Local(),
+		Recorder:  employee,
+		Ambulance: ambulance,
+		Severity:  ambulancecheck.Severity,
+		DocCode:   ambulancecheck.DocCode,
+		Note:      ambulancecheck.Note,
+		Problem:   problem,
+	}
 
-// 	if err := entity.DB().Create(&ac).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-// 	c.JSON(http.StatusOK, gin.H{"data": ac})
-// }
+	if err := entity.DB().Create(&ac).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": ac})
+}
 
 func GetAmbulanceCheck(c *gin.Context) {
 	var ambulancecheck entity.AmbulanceCheck
