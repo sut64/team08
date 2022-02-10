@@ -36,7 +36,7 @@ func TestSymptomLevelInRange(t *testing.T) {
 
 	assessment := Assessment{
 		Symptom:      "headache",
-		SymptomLevel: 4,
+		SymptomLevel: 0,
 		Datetime:     time.Now(),
 	}
 
@@ -59,7 +59,7 @@ func TestDatetimeMustBePresent(t *testing.T) {
 	assessment := Assessment{
 		Symptom:      "faint",
 		SymptomLevel: 1,
-		Datetime:     time.Now().Add((-24) * time.Hour), // ใส่วันที่ของเมื่อวาน
+		Datetime:     time.Now().Add((-26) * time.Hour), // ใส่วันที่ของเมื่อวาน
 	}
 	// ตรวจสอบด้วย govalidator
 	ok, err := govalidator.ValidateStruct(assessment)
