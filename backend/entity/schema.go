@@ -55,18 +55,18 @@ type AmbulanceArrival struct {
 type Assessment struct {
 	gorm.Model
 
-	Symptom      string
-	SymptomLevel uint
-	Datetime     time.Time
+	Symptom      string    `valid:"required~Please fill the symptom"`
+	SymptomLevel uint      `valid:"int,range(1|3),required~Level must be only (1-3)"`
+	Datetime     time.Time `valid:"required,today~Please select current time"`
 
 	PatientID *uint
-	Patient   Patient `gorm:"references:id"`
+	Patient   Patient `gorm:"references:id" valid:"-"`
 
 	RecorderID *uint
-	Recorder   Employee `gorm:"references:id"`
+	Recorder   Employee `gorm:"references:id" valid:"-"`
 
 	IncidentID *uint
-	Incident   Incident `gorm:"references:id"`
+	Incident   Incident `gorm:"references:id" valid:"-"`
 }
 
 type Ambulance struct {
