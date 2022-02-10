@@ -71,18 +71,18 @@ type Assessment struct {
 
 type Ambulance struct {
 	gorm.Model
-	CarNumber    uint
-	Registration string
-	DateTime     time.Time
+	CarNumber    int       `valid:"required,mtzero"`
+	Registration string    `valid:"matches(^[ก-ฮ]{2}\\d{1}$|^[ก-ฮ]{2}\\d{2}$|^[ก-ฮ]{2}\\d{3}$|^[ก-ฮ]{2}\\d{4}$|^1[ก-ฮ]{2}\\d{1}$|^1[ก-ฮ]{2}\\d{2}$|^1[ก-ฮ]{2}\\d{3}$|^1[ก-ฮ]{2}\\d{4}$)"`
+	DateTime     time.Time `valid:"today~AmbulanceDate not true"`
 
 	StatusID *uint
-	Status   Status `gorm:"references:id"`
+	Status   Status `gorm:"references:id" valid:"-"`
 
 	AmbulanceTypeID *uint
-	AmbulanceType   AmbulanceType `gorm:"references:id"`
+	AmbulanceType   AmbulanceType `gorm:"references:id" valid:"-"`
 
 	EmployeeID *uint
-	Employee   Employee `gorm:"references:id"`
+	Employee   Employee `gorm:"references:id" valid:"-"`
 }
 type Status struct {
 	gorm.Model
@@ -161,7 +161,6 @@ type Problem struct {
 }
 
 func init() {
-
 	govalidator.CustomTypeTagMap.Set("today", func(i interface{}, context interface{}) bool {
 		t := i.(time.Time)
 
@@ -173,5 +172,9 @@ func init() {
 			}
 		}
 		return false
+	})
+	govalidator.CustomTypeTagMap.Set("mtzero", func(i interface{}, context interface{}) bool {
+		c, _ := i.(int)
+		return c > 0
 	})
 }
