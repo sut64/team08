@@ -56,8 +56,8 @@ type Assessment struct {
 	gorm.Model
 
 	Symptom      string    `valid:"required~Please fill the symptom"`
-	SymptomLevel uint      `valid:"int,range(1|3)~Level must be only (1-3)"`
-	Datetime     time.Time `valid:"today~Please select current time"`
+	SymptomLevel uint      `valid:"int,range(1|3),required~Level must be only (1-3)"`
+	Datetime     time.Time `valid:"required,today~Please select current time"`
 
 	PatientID *uint
 	Patient   Patient `gorm:"references:id" valid:"-"`
@@ -174,4 +174,5 @@ func init() {
 		}
 		return false
 	})
+
 }
