@@ -38,18 +38,18 @@ type AmbulanceOnDuty struct {
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger uint
-	Distance            float32
-	DateTime            time.Time
+	Number_of_passenger int  `valid:"required,Positivenumber~must be greater than equal to zero"`
+	Distance            float32 `valid:"required,Positivedecimal~must be greater to zero"`
+	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
 
 	RecorderID *uint
-	Recorder   Employee `gorm:"references:id"`
+	Recorder   Employee `gorm:"references:id" valid:"-"`
 
 	PatientID *uint
-	Patient   Patient `gorm:"references:id"`
+	Patient   Patient `gorm:"references:id" valid:"-"`
 
 	AmbulanceOnDutyID *uint           `gorm:"uniqueIndex"`
-	AmbulanceOnDuty   AmbulanceOnDuty `gorm:"references:id"`
+	AmbulanceOnDuty   AmbulanceOnDuty `gorm:"references:id" valid:"-"`
 }
 
 type Assessment struct {
@@ -177,4 +177,22 @@ func init() {
 		c, _ := i.(int)
 		return c > 0
 	})
+	govalidator.CustomTypeTagMap.Set("Positivenumber", func(i interface{}, context interface{}) bool {
+		n := i.(int)
+		if n <= 0 {
+			return false
+		} else {
+			return true
+		}
+	})
+	govalidator.CustomTypeTagMap.Set("Positivedecimal", func(i interface{}, context interface{}) bool {
+		d := i.(float32)
+		if d <= 0.0 {
+			return false
+		} else {
+			return true
+		}
+	})
+	
 }
+
