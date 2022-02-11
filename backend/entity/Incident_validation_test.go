@@ -153,7 +153,7 @@ func TestIncidentLocationNotBlank(t *testing.T) {
 		Informer:      "QWER",
 		Numberpatient: 1,
 		Location:      "", //wrong
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
