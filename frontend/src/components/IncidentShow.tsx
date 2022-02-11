@@ -98,9 +98,6 @@ function Incidents() {
                 <TableCell align="center" width="10%">
                   ชื่อผู้แจ้ง
                 </TableCell>
-                <TableCell align="center" width="10%">
-                  สถานที่เกิดเหตุ
-                </TableCell>
                 <TableCell align="center" width="5%">
                   จำนวนคาดการณ์ผู้ป่วย
                 </TableCell>
@@ -111,7 +108,7 @@ function Incidents() {
                   ความเร่งด่วน
                 </TableCell>
                 <TableCell align="center" width="10%">
-                  ชื่อผู้แจ้ง
+                  ชื่อผู้บันทึก
                 </TableCell>
                 <TableCell align="center" width="10%">
                   วันที่รับเหตุ
@@ -125,7 +122,6 @@ function Incidents() {
                   <TableCell align="center">{item.ID}</TableCell>
                   <TableCell align="center">{item.Title}</TableCell>
                   <TableCell align="center">{item.Informer}</TableCell>
-                  <TableCell align="center">{item.Location}</TableCell>
                   <TableCell align="center">{item.Numberpatient}</TableCell>
                   <TableCell align="center">{item.Location}</TableCell>
                   <TableCell align="center">{item.Urgency.Value}</TableCell>
