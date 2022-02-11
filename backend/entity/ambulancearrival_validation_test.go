@@ -51,7 +51,7 @@ func TestAmbulanceArrivalDateMustBeToday(t *testing.T) {
 	g.Expect(err.Error()).To(Equal("Ambulance Arrival must be current date"))
 }
 
-//ตรวจสอบจำนวนคนที่นั่งกลับมาแล้วต้องเจอ Error
+//ตรวจสอบค่าจำนวนคนที่นั่งกลับมาแล้วต้องเจอ Error
 func TestAmbulanceArrivalNumberPatientBeInvalid(t *testing.T) {
 	g := NewGomegaWithT(t)
 
@@ -73,7 +73,7 @@ func TestAmbulanceArrivalNumberPatientBeInvalid(t *testing.T) {
 
 }
 
-//ตรวจสอบระยะทางแล้วต้องเจอ Error
+//ตรวจสอบค่าระยะทางแล้วต้องเจอ Error
 func TestAmbulanceArrivalDistanceMustBeValid(t *testing.T) {
 	g := NewGomegaWithT(t)
 
