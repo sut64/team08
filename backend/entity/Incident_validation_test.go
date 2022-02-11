@@ -34,7 +34,7 @@ func TestIncidentTitleNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	incident := Incident{
-		Title:         "", //ผิด
+		Title:         "", //ว่างเปล่า, ผิด
 		Informer:      "AAA",
 		Numberpatient: 1,
 		Location:      "BBB",
