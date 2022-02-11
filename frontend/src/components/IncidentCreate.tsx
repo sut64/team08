@@ -21,6 +21,7 @@ import { IncidentsInterface } from "../models/IIncident";
 import { EmployeesInterface } from "../models/IEmployee";
 import { UrgenciesInterface } from "../models/IUrgency";
 import { IllnessInterface } from "../models/IIllness";
+import SendIcon from "@material-ui/icons/Send";
 
 
 function Alert(props: AlertProps) {
@@ -38,12 +39,15 @@ const useStyles = makeStyles((theme: Theme) =>
 function IncidentCreate() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date());
-  const [incident, setIncident] = React.useState<Partial<IncidentsInterface>>({});
   const [employee, setEmployee] = React.useState<EmployeesInterface>();
   const [illnesses, setIllness] = React.useState<IllnessInterface[]>([]);
   const [urgencies, setUrgencies] = React.useState<UrgenciesInterface[]>([]);
+  const [incident, setIncident] = React.useState<Partial<IncidentsInterface>>(
+    {}
+  );
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
   const apiUrl = "http://localhost:8080";
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -157,9 +161,13 @@ function IncidentCreate() {
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
+          console.log("บันทึกได้")
           setSuccess(true);
+          setErrorMessage("")
         } else {
+          console.log("บันทึกไม่ได้")
           setError(true);
+          setErrorMessage(res.error)
         }
       });
   }
@@ -173,7 +181,7 @@ function IncidentCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+          บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>
@@ -188,6 +196,18 @@ function IncidentCreate() {
               บันทึกการรับเหตุ
             </Typography>
           </Box>
+
+          <Button
+            component={RouterLink}
+            to="/incident/show"
+            variant="text"
+            color="primary"
+            size = "small"
+
+          >
+            แสดงตารางการรับเหตุ
+          </Button>
+
         </Box>
         <Divider />
 
@@ -327,16 +347,14 @@ function IncidentCreate() {
           </Grid>
 
           <Grid item xs={12}>
-            <Button component={RouterLink} to="/incident/show" variant="contained">
-              Back
-            </Button>
             <Button
               style={{ float: "right" }}
               onClick={submit}
               variant="contained"
               color="primary"
+              endIcon={<SendIcon />}
             >
-              Submit
+              บันทึก
             </Button>
           </Grid>
         </Grid>

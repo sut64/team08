@@ -135,18 +135,19 @@ type Illness struct {
 
 type Incident struct {
 	gorm.Model
-	Title         string
-	Informer      string
-	Numberpatient uint
-	Location      string
-	Datetime      time.Time
-	EmployeeID    *uint
-	Employee      Employee
-	IllnessID     *uint
-	Illness       Illness
-	UrgencyID     *uint
-	Urgency       Urgency
-	Assessments   []Assessment `gorm:"foreignKey:IncidentID"`
+	Title         string    `valid:"required~Title cannot be blank"`
+	Informer      string    `valid:"alpha~Informer cannot be number, required~Informer cannot be blank"`
+	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
+	Location      string    `valid:"required~Location cannot be blank"`
+	Datetime      time.Time `valid:"future~DateTime must be in the future"`
+
+	EmployeeID  *uint
+	Employee    Employee
+	IllnessID   *uint
+	Illness     Illness
+	UrgencyID   *uint
+	Urgency     Urgency
+	Assessments []Assessment `gorm:"foreignKey:IncidentID" valid:"-"`
 }
 
 type Urgency struct {
@@ -174,4 +175,15 @@ func init() {
 		}
 		return false
 	})
+
+	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		return t.After(time.Now().Add(-1 * time.Hour))
+	})
+
+	govalidator.CustomTypeTagMap.Set("positive", func(i interface{}, context interface{}) bool {
+		n := i.(int)
+		return n >= 1
+	})
+
 }
