@@ -17,7 +17,7 @@ func TestIncidentPass(t *testing.T) {
 		Informer:      "AAA",
 		Numberpatient: 1,
 		Location:      "BBB",
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -38,7 +38,7 @@ func TestIncidentTitleNotBlank(t *testing.T) {
 		Informer:      "AAA",
 		Numberpatient: 1,
 		Location:      "BBB",
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -61,7 +61,7 @@ func TestIncidentInformerNotBlank(t *testing.T) {
 		Informer:      "", //wrong
 		Numberpatient: 1,
 		Location:      "BBB",
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -84,7 +84,7 @@ func TestIncidentInformerNotNumber(t *testing.T) {
 		Informer:      "abc1319922", //wrong
 		Numberpatient: 1,
 		Location:      "BBB",
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -107,7 +107,7 @@ func TestIncidentNumberpatientNotZero(t *testing.T) {
 		Informer:      "AAA",
 		Numberpatient: 0, // ผิด
 		Location:      "BBB",
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -130,7 +130,7 @@ func TestIncidentNumberpatientNotNegative(t *testing.T) {
 		Informer:      "AAA",
 		Numberpatient: -1, // ผิด
 		Location:      "BBB",
-		Datetime:      time.Now().Add(24 * time.Hour),
+		Datetime:      time.Now(),
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -168,7 +168,7 @@ func TestIncidentLocationNotBlank(t *testing.T) {
 	g.Expect(err.Error()).To(Equal("Location cannot be blank"))
 }
 
-func TestIncidentDateHaveMushFuture(t *testing.T) {
+func TestIncidentDateHaveMushPresent(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	incident := Incident{
@@ -176,7 +176,7 @@ func TestIncidentDateHaveMushFuture(t *testing.T) {
 		Informer:      "AAA",
 		Numberpatient: 4,
 		Location:      "BBB",
-		Datetime:      time.Now().Add(-24 * time.Hour), // อดีต, fail
+		Datetime:      time.Now().Add(-29 * time.Hour), // อดีต or อนาคต, fail
 	}
 
 	//ตรวจสอบด้วย gobalidator
@@ -188,5 +188,5 @@ func TestIncidentDateHaveMushFuture(t *testing.T) {
 	// err ไม่เป็น nil แปลว่าต้องจับ error ได้
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("DateTime must be in the future"))
+	g.Expect(err.Error()).To(Equal("DateTime must be present"))
 }

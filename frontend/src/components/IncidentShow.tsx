@@ -108,7 +108,7 @@ function Incidents() {
                   ความเร่งด่วน
                 </TableCell>
                 <TableCell align="center" width="10%">
-                  ชื่อผู้แจ้ง
+                  ชื่อผู้บันทึก
                 </TableCell>
                 <TableCell align="center" width="10%">
                   วันที่รับเหตุ
