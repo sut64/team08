@@ -11,7 +11,7 @@ import (
 func TestIncidentPass(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	// ข้อมูลถูกต้องทั้งหมดทุก field
+	// ข้อมูลถูกต้องทั้งหมดทุก field yes
 	incident := Incident{
 		Title:         "QWE",
 		Informer:      "AAA",

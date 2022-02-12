@@ -20,9 +20,9 @@ type Patient struct {
 type AmbulanceOnDuty struct {
 	gorm.Model
 
-	Code       string    `valid:"matches(^[D]\\d{8}$),required"`
-	OnDutyDate time.Time `valid:"today"`
-	Passenger  uint      `valid:"required"`
+	Code       string    `valid:"matches(^[D]\\d{8}$)~Code not matches 'Dxxxxxxxx' x = number,required~Code must not be blank"`
+	OnDutyDate time.Time `valid:"today~Date must be today"`
+	Passenger  uint      `valid:"required~Passenger must be greater than zero"`
 
 	AmbulanceID *uint
 	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
@@ -109,22 +109,22 @@ type Employee struct {
 
 type AmbulanceCheck struct {
 	gorm.Model
-	DateTime time.Time
+	DateTime time.Time `valid:"today~Time must be current date"`
 
-	DocCode  string
-	Severity uint
+	DocCode  string `valid:"matches(^[A-Z]{3}\\d{3}$),required~DocCode must be in correct form"`
+	Severity int    `valid:"int,range(1|3),required~Level must be between 1-3"`
 	Note     string
 
 	//AmbulanceID ทำหน้าที่เป็น FK
 	AmbulanceID *uint
-	Ambulance   Ambulance `gorm:"references:id"`
+	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
 
 	//RecorderID ทำหน้าที่เป็น FK
 	RecorderID *uint
-	Recorder   Employee `gorm:"references:id"`
+	Recorder   Employee `gorm:"references:id" valid:"-"`
 
 	ProblemID *uint
-	Problem   Problem `gorm:"references:id"`
+	Problem   Problem `gorm:"references:id" valid:"-"`
 }
 
 type Illness struct {
@@ -136,7 +136,7 @@ type Illness struct {
 type Incident struct {
 	gorm.Model
 	Title         string    `valid:"required~Title cannot be blank"`
-	Informer      string    `valid:"alpha~Informer cannot be number, required~Informer cannot be blank"`
+	Informer      string    `valid:"required~Informer cannot be blank"`
 	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
 	Location      string    `valid:"required~Location cannot be blank"`
 	Datetime      time.Time `valid:"today~DateTime must be present"`
