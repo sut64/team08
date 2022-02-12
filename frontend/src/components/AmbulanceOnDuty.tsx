@@ -61,6 +61,7 @@ function PaymentCreate() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMasage, setErrorMasage] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -154,7 +155,7 @@ function PaymentCreate() {
       Code: ambulanceOnDuty.Code,
       AmbulanceID: convertType(ambulanceOnDuty.AmbulanceID),
       IncidentID: convertType(ambulanceOnDuty.IncidentID),
-      RecorderID: 1,//convertType(Number(localStorage.getItem("uid"))),
+      RecorderID: convertType(Number(localStorage.getItem("uid"))),
       OnDutyDate: selectedDate,
       Passenger: convertType(ambulanceOnDuty.Passenger),
     };
@@ -171,9 +172,13 @@ function PaymentCreate() {
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
+          console.log("บันทึกได้");
           setSuccess(true);
+          setErrorMasage("");
         } else {
+          console.log("บันทึกไม่ได้");
           setError(true);
+          setErrorMasage(res.error);
         }
       });
   }
@@ -187,7 +192,7 @@ function PaymentCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          การบันทึกมีข้อผิดพลาด
+          การบันทึกมีข้อผิดพลาด :{errorMasage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>

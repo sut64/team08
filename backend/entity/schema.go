@@ -20,9 +20,9 @@ type Patient struct {
 type AmbulanceOnDuty struct {
 	gorm.Model
 
-	Code       string    `valid:"matches(^[D]\\d{8}$),required"`
-	OnDutyDate time.Time `valid:"today"`
-	Passenger  uint      `valid:"required"`
+	Code       string    `valid:"matches(^[D]\\d{8}$)~Code not matches 'Dxxxxxxxx' x = number,required~Code must not be blank"`
+	OnDutyDate time.Time `valid:"today~Date must be today"`
+	Passenger  uint      `valid:"required~Passenger must be greater than zero"`
 
 	AmbulanceID *uint
 	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
@@ -38,8 +38,8 @@ type AmbulanceOnDuty struct {
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int  `valid:"required,Positivenumber~must be greater than equal to zero"`
-	Distance            float32 `valid:"required,Positivedecimal~must be greater to zero"`
+	Number_of_passenger int       `valid:"required,Positivenumber~must be greater than equal to zero"`
+	Distance            float32   `valid:"required,Positivedecimal~must be greater to zero"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
 
 	RecorderID *uint
@@ -109,22 +109,22 @@ type Employee struct {
 
 type AmbulanceCheck struct {
 	gorm.Model
-	DateTime time.Time
+	DateTime time.Time `valid:"today~Time must be current date"`
 
-	DocCode  string
-	Severity uint
+	DocCode  string `valid:"matches(^[A-Z]{3}\\d{3}$),required~DocCode must be in correct form"`
+	Severity int    `valid:"int,range(1|3),required~Level must be between 1-3"`
 	Note     string
 
 	//AmbulanceID ทำหน้าที่เป็น FK
 	AmbulanceID *uint
-	Ambulance   Ambulance `gorm:"references:id"`
+	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
 
 	//RecorderID ทำหน้าที่เป็น FK
 	RecorderID *uint
-	Recorder   Employee `gorm:"references:id"`
+	Recorder   Employee `gorm:"references:id" valid:"-"`
 
 	ProblemID *uint
-	Problem   Problem `gorm:"references:id"`
+	Problem   Problem `gorm:"references:id" valid:"-"`
 }
 
 type Illness struct {
@@ -135,18 +135,19 @@ type Illness struct {
 
 type Incident struct {
 	gorm.Model
-	Title         string
-	Informer      string
-	Numberpatient uint
-	Location      string
-	Datetime      time.Time
-	EmployeeID    *uint
-	Employee      Employee
-	IllnessID     *uint
-	Illness       Illness
-	UrgencyID     *uint
-	Urgency       Urgency
-	Assessments   []Assessment `gorm:"foreignKey:IncidentID"`
+	Title         string    `valid:"required~Title cannot be blank"`
+	Informer      string    `valid:"alpha~Informer cannot be number, required~Informer cannot be blank"`
+	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
+	Location      string    `valid:"required~Location cannot be blank"`
+	Datetime      time.Time `valid:"today~DateTime must be present"`
+
+	EmployeeID  *uint
+	Employee    Employee
+	IllnessID   *uint
+	Illness     Illness
+	UrgencyID   *uint
+	Urgency     Urgency
+	Assessments []Assessment `gorm:"foreignKey:IncidentID" valid:"-"`
 }
 
 type Urgency struct {
@@ -173,6 +174,17 @@ func init() {
 		}
 		return false
 	})
+
+	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		return t.After(time.Now().Add(-1 * time.Hour))
+	})
+
+	govalidator.CustomTypeTagMap.Set("positive", func(i interface{}, context interface{}) bool {
+		n := i.(int)
+		return n >= 1
+	})
+
 	govalidator.CustomTypeTagMap.Set("mtzero", func(i interface{}, context interface{}) bool {
 		c, _ := i.(int)
 		return c > 0
@@ -193,6 +205,5 @@ func init() {
 			return true
 		}
 	})
-	
-}
 
+}
