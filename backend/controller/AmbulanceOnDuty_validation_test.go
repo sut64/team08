@@ -31,20 +31,18 @@ func TestAmbulanceOnDutyPass(t *testing.T) {
 func TestAmbulanceOnDutyCodeNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	// ข้อมูลถูกต้องหมดทุก field
 	ambulanceOnDuty := entity.AmbulanceOnDuty{
-		Code:       "",
+		Code:       "", //เป็นค่าว่าง ผิด
 		OnDutyDate: time.Now(),
 		Passenger:  2,
 	}
-	// ตรวจสอบด้วย govalidator
 	ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
 
-	// ok ต้องเป็น true แปลว่าไม่มี error
 	g.Expect(ok).ToNot(BeTrue())
 
-	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
+
+	g.Expect(err.Error()).To(Equal("Code must not be blank"))
 }
 
 func TestAmbulanceOnDutyCodeMatches(t *testing.T) {
@@ -66,51 +64,46 @@ func TestAmbulanceOnDutyCodeMatches(t *testing.T) {
 			OnDutyDate: time.Now(),
 			Passenger:  2,
 		}
-		// ตรวจสอบด้วย govalidator
 		ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
 
-		// ok ต้องเป็น true แปลว่าไม่มี error
 		g.Expect(ok).ToNot(BeTrue())
 
-		// err เป็นค่า nil แปลว่าไม่มี error
 		g.Expect(err).ToNot(BeNil())
+
+		g.Expect(err.Error()).To(Equal("Code not matches 'Dxxxxxxxx' x = number"))
 	}
 }
 
 func TestAmbulanceOnDutyDateToDay(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	// ข้อมูลถูกต้องหมดทุก field
 	ambulanceOnDuty := entity.AmbulanceOnDuty{
 		Code:       "D12345678",
-		OnDutyDate: time.Now().Add(24 * time.Hour),
+		OnDutyDate: time.Now().Add(24 * time.Hour), //วันที่ไม่เป็นปัจจุบัน ผิด
 		Passenger:  2,
 	}
-	// ตรวจสอบด้วย govalidator
 	ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
 
-	// ok ต้องเป็น true แปลว่าไม่มี error
 	g.Expect(ok).ToNot(BeTrue())
 
-	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
+
+	g.Expect(err.Error()).To(Equal("Date must be today"))
 }
 
 func TestAmbulanceOnDutyPassengerNotZero(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	// ข้อมูลถูกต้องหมดทุก field
 	ambulanceOnDuty := entity.AmbulanceOnDuty{
 		Code:       "D12345678",
 		OnDutyDate: time.Now(),
-		Passenger:  0,
+		Passenger:  0, //ผู้โดยสารเป็น 0 ผิด
 	}
-	// ตรวจสอบด้วย govalidator
 	ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
 
-	// ok ต้องเป็น true แปลว่าไม่มี error
 	g.Expect(ok).ToNot(BeTrue())
 
-	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
+
+	g.Expect(err.Error()).To(Equal("Passenger must be greater than zero"))
 }
