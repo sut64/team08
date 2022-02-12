@@ -36,7 +36,7 @@ func CreateAmbulanceCheck(c *gin.Context) {
 	}
 
 	ac := entity.AmbulanceCheck{
-		DateTime:  ambulancecheck.DateTime.Local(),
+		DateTime:  ambulancecheck.DateTime,
 		Recorder:  employee,
 		Ambulance: ambulance,
 		Severity:  ambulancecheck.Severity,

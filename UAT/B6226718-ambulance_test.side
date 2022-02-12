@@ -1,0 +1,719 @@
+{
+  "id": "ae4207aa-aafd-49ad-a2db-954e7c6cb815",
+  "version": "2.0",
+  "name": "ambulance_test",
+  "url": "http://localhost:3000/ambulance/create",
+  "tests": [{
+    "id": "4f0c0935-b3ba-41c5-938f-54f6be7718d3",
+    "name": "B6226718-ตรวจสอบวันที่ AmbulanceTime ต้องเป็นวันที่ปัจจุบัน",
+    "commands": [{
+      "id": "61bb4c26-59bf-43f3-be9a-f04098c0ed72",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/ambulance/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8c7eaeb2-cdf8-4ce4-a650-bbe6c284de24",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "642x690",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "235c0386-e2e2-44de-ab82-83542df54327",
+      "comment": "",
+      "command": "click",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3fea878-2324-493f-947a-a0e0c61312ea",
+      "comment": "",
+      "command": "type",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "24"
+    }, {
+      "id": "d93c8fe5-34f0-411b-9b9c-290fa39585fe",
+      "comment": "",
+      "command": "click",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fedb7fd6-3c8c-4848-8244-6c25c6d7fa58",
+      "comment": "",
+      "command": "type",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "กร56"
+    }, {
+      "id": "1f26b3a8-9173-468c-be2f-7adadbd8fab1",
+      "comment": "",
+      "command": "click",
+      "target": "name=AmbulanceTypeID",
+      "targets": [
+        ["name=AmbulanceTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='AmbulanceTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec4661a5-0a28-4690-961b-85532167ccda",
+      "comment": "",
+      "command": "select",
+      "target": "name=AmbulanceTypeID",
+      "targets": [],
+      "value": "label=VAN-ALSV"
+    }, {
+      "id": "fa992fb9-2e34-4d50-8912-9c0f9e2723ce",
+      "comment": "",
+      "command": "click",
+      "target": "name=StatusID",
+      "targets": [
+        ["name=StatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='StatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5523619-4b5c-4f67-8182-310f560c6d76",
+      "comment": "",
+      "command": "select",
+      "target": "name=StatusID",
+      "targets": [],
+      "value": "label=ว่าง"
+    }, {
+      "id": "96056ad3-4b05-4305-9607-4128d2e04994",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f7b1f20-94dc-4105-a4a8-04de3d98f8ab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a238e1e-86e4-4a33-a71c-9e7e9a11aef5",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d90fb7b-2444-422f-8c82-7b24be1a132a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(4) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(4) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[4]/button/span/p", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "55be7fad-576a-4530-8761-9c9dec4aa1cf",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1764302c-27ce-482b-a8b5-9cce980aec43",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3214da12-ed45-4e18-9ccc-e23a5bc4b611",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[7]/button/span", "xpath:idRelative"],
+        ["xpath=//div[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'บันทึก')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd92bb00-0926-443f-8570-bdee7d39b6f4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9f13c74-752b-486c-b374-747f001800eb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกผิดพลาด: AmbulanceDate not true"
+    }, {
+      "id": "e11dc89a-654d-4914-9eaf-24e84370af6f",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "5ba44b00-cae5-486d-88c6-ab1ee54c4aca",
+    "name": "B6226718-ตรวจสอบ carnumber ต้องมีค่ามากกว่าศูนย์",
+    "commands": [{
+      "id": "7ff321f5-e94e-4b23-847c-e60f7efb4fc6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/ambulance/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "312316b6-d3f4-4924-aaec-f4941d0a7830",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "642x690",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb2f0934-9ae3-478a-8093-1d7f8bec507b",
+      "comment": "",
+      "command": "click",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fabf350-0544-4fe8-aa72-624a517ac6f8",
+      "comment": "",
+      "command": "type",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "-3"
+    }, {
+      "id": "ba8429f8-9dbb-4e9e-aa61-4ae293e26e00",
+      "comment": "",
+      "command": "click",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a56d0c14-5562-44d3-bfa6-4d0240850b4c",
+      "comment": "",
+      "command": "type",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "กร56"
+    }, {
+      "id": "f80a3fde-c5b1-4c04-9b3f-d3f550e6ca00",
+      "comment": "",
+      "command": "click",
+      "target": "name=AmbulanceTypeID",
+      "targets": [
+        ["name=AmbulanceTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='AmbulanceTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd78343c-cbc3-4d8a-9f2a-fd2357849bc7",
+      "comment": "",
+      "command": "select",
+      "target": "name=AmbulanceTypeID",
+      "targets": [],
+      "value": "label=VAN-ALSV"
+    }, {
+      "id": "183e585b-5da4-4b1c-b91b-a57899128e37",
+      "comment": "",
+      "command": "click",
+      "target": "name=StatusID",
+      "targets": [
+        ["name=StatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='StatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f79d5d3-2fbd-4683-9923-176b8bae6999",
+      "comment": "",
+      "command": "select",
+      "target": "name=StatusID",
+      "targets": [],
+      "value": "label=ว่าง"
+    }, {
+      "id": "98fa7c86-9eed-4002-9995-27184f0fc74a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[7]/button/span", "xpath:idRelative"],
+        ["xpath=//div[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'บันทึก')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5ff4017-00d3-4cd0-b2eb-801f3dc2b160",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกผิดพลาด: CarNumber: -3 does not validate as mtzero"
+    }, {
+      "id": "95b2cd28-a920-4f14-a6cb-8ba9f9c66f0b",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "d20a446f-aff2-4fb0-afaa-065dadb9f2ef",
+    "name": "B6226718-ตรวจสอบ Registration ต้องเป็นรูปแบบที่กำหนด",
+    "commands": [{
+      "id": "aed4e4c3-5e83-4a22-9d34-e3fe921aded0",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/ambulance/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e5ae696f-4329-4b2f-8d86-f03a337aae36",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "642x690",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dcf072d2-1dbd-412b-943b-33bd7196976b",
+      "comment": "",
+      "command": "click",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "629a6fd4-ee6f-4945-847f-bf09ecb4fcf6",
+      "comment": "",
+      "command": "type",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "22"
+    }, {
+      "id": "3c0d3407-fad0-4b6d-86ac-5fe33246f35c",
+      "comment": "",
+      "command": "click",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2baa6cfd-dcbb-4aa7-bb7e-6dd275b63e1c",
+      "comment": "",
+      "command": "type",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "กร56"
+    }, {
+      "id": "3366225b-33b7-49f8-9f5a-5c523aa64744",
+      "comment": "",
+      "command": "click",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a60cf645-0c93-457f-818d-fa81f279fcad",
+      "comment": "",
+      "command": "type",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "ณัฐชยา56"
+    }, {
+      "id": "01f5e30e-8c9d-46b4-ba21-945c08069a3e",
+      "comment": "",
+      "command": "click",
+      "target": "name=AmbulanceTypeID",
+      "targets": [
+        ["name=AmbulanceTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='AmbulanceTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9bf90288-ba26-47e2-ad6d-8e882843ca5d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiGrid-root:nth-child(5) > .MuiFormControl-root",
+      "targets": [
+        ["css=.MuiGrid-root:nth-child(5) > .MuiFormControl-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div", "xpath:idRelative"],
+        ["xpath=//div[5]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "088909bd-c3cb-4cb3-8036-c49742f2eb0a",
+      "comment": "",
+      "command": "click",
+      "target": "name=AmbulanceTypeID",
+      "targets": [
+        ["name=AmbulanceTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='AmbulanceTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0542f7d-295b-42cd-9d39-677cbf77962f",
+      "comment": "",
+      "command": "select",
+      "target": "name=AmbulanceTypeID",
+      "targets": [],
+      "value": "label=VAN-ALSV"
+    }, {
+      "id": "8d6490fa-64af-40c3-aa01-031835ab2d4e",
+      "comment": "",
+      "command": "click",
+      "target": "name=StatusID",
+      "targets": [
+        ["name=StatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='StatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8df9fde6-88f4-486d-bcb2-663392cad80f",
+      "comment": "",
+      "command": "select",
+      "target": "name=StatusID",
+      "targets": [],
+      "value": "label=ว่าง"
+    }, {
+      "id": "99d4c726-c87a-454a-a6b9-89d14038dd14",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[7]/button/span", "xpath:idRelative"],
+        ["xpath=//div[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'บันทึก')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a02a04a3-b632-423f-974a-86fc0b703f70",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8319d361-d174-481f-b635-e9634dbafedd",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกผิดพลาด: Registration: ณัฐชยา56 does not validate as matches(^[ก-ฮ]{2}\\d{1}$|^[ก-ฮ]{2}\\d{2}$|^[ก-ฮ]{2}\\d{3}$|^[ก-ฮ]{2}\\d{4}$|^1[ก-ฮ]{2}\\d{1}$|^1[ก-ฮ]{2}\\d{2}$|^1[ก-ฮ]{2}\\d{3}$|^1[ก-ฮ]{2}\\d{4}$)"
+    }, {
+      "id": "5d9142c8-882a-46c8-8a7a-3da00fafd516",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "2a7017aa-89a0-4034-bfa9-aa5dd61f9a0a",
+    "name": "B6226718-ตรวจสอบ AmbulancePass บันทึกสำเร็จ",
+    "commands": [{
+      "id": "f8f085ce-6497-4cc2-8fbd-5b38e5765638",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/ambulance/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3a4b12fe-1194-4a54-aca6-f6022f77b38a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "642x690",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "29dab79d-654c-4373-b59f-73ece22fb938",
+      "comment": "",
+      "command": "click",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e68c236b-0730-46de-af25-94ce02b6d47c",
+      "comment": "",
+      "command": "type",
+      "target": "id=CarNumber",
+      "targets": [
+        ["id=CarNumber", "id"],
+        ["css=#CarNumber", "css:finder"],
+        ["xpath=//input[@id='CarNumber']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "21"
+    }, {
+      "id": "65a10b5e-4adb-46d5-8bbb-a678bb474e0a",
+      "comment": "",
+      "command": "click",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2220fdc-10e6-4f0a-b4c5-32c7710bc739",
+      "comment": "",
+      "command": "type",
+      "target": "id=Registration",
+      "targets": [
+        ["id=Registration", "id"],
+        ["css=#Registration", "css:finder"],
+        ["xpath=//input[@id='Registration']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "กร56"
+    }, {
+      "id": "1552be52-da03-4d98-a48a-06d316cbd34c",
+      "comment": "",
+      "command": "click",
+      "target": "name=AmbulanceTypeID",
+      "targets": [
+        ["name=AmbulanceTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='AmbulanceTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa8593cb-54ca-460a-ba28-05f1055e68c0",
+      "comment": "",
+      "command": "select",
+      "target": "name=AmbulanceTypeID",
+      "targets": [],
+      "value": "label=VAN-ALSV"
+    }, {
+      "id": "c7cf54e4-b458-4141-b35c-fab14d678b60",
+      "comment": "",
+      "command": "click",
+      "target": "name=StatusID",
+      "targets": [
+        ["name=StatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='StatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "931fff50-ff23-4c26-aa9a-4196b621a29f",
+      "comment": "",
+      "command": "select",
+      "target": "name=StatusID",
+      "targets": [],
+      "value": "label=ว่าง"
+    }, {
+      "id": "6e874ad7-34fd-471a-a29a-21bbb06e42f7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[7]/button/span", "xpath:idRelative"],
+        ["xpath=//div[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'บันทึก')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0d74c11-87c5-4dd0-8b07-0b9c9a47efa5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "84f2b2dd-5843-4f61-81f5-3eebeb1467ec",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกสำเร็จ"
+    }, {
+      "id": "11bbeb92-1b09-4ad7-b532-563b7a54fb8a",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "eab7b5eb-5b55-4c3a-a9b6-a9229cdbc654",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/ambulance/create"],
+  "plugins": []
+}

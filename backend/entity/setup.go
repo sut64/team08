@@ -145,7 +145,7 @@ func SetupDatabase() {
 	// //Ambulance
 	// am1 := Ambulance{
 	// 	CarNumber:    100,
-	// 	Registration: "กข 523",
+	// 	Registration: "test",
 	// 	DateTime:     time.Now(),
 	// }
 	// db.Model(&Ambulance{}).Create(&am1)

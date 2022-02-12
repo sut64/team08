@@ -161,8 +161,10 @@ function AmbulanceCheckCreate() {
       DocCode: ambulancecheck.DocCode ?? "",
       Severity: convertType(ambulancecheck.Severity),
       Note: ambulancecheck.Note ?? "",
-      DateAndTime: selectedDate,
+      DateTime: selectedDate,
     };
+
+    console.log(selectedDate);
 
     const requestOptionsPost = {
       method: "POST",
@@ -220,11 +222,13 @@ function AmbulanceCheckCreate() {
                             <p>วันที่ปัจจุบัน</p>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDateTimePicker
-                                    name="DateAndTime"
+                                    name="DateTime"
                                     value={selectedDate}
                                     onChange={handleDateChange}
                                     label="กรุณาเลือกวันที่"
+                                    minDate={new Date("2018-01-01T00:00")}
                                     format="yyyy-MM-dd hh:mm"
+
                                 />
                             </MuiPickersUtilsProvider>
                       </FormControl>
@@ -282,6 +286,7 @@ function AmbulanceCheckCreate() {
                         <FormControl fullWidth variant="outlined">
                             <p>รถพยาบาล</p>
                             <Select
+                                native
                                 value={ambulancecheck.AmbulanceID}
                                 onChange={handleChange}
                                 inputProps={{
@@ -304,6 +309,7 @@ function AmbulanceCheckCreate() {
                         <FormControl fullWidth variant="outlined">
                             <p>ปัญหา</p>
                             <Select
+                                native
                                 value={ambulancecheck.ProblemID}
                                 onChange={handleChange}
                                 inputProps={{
