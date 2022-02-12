@@ -153,11 +153,15 @@ const Alert = (props: AlertProps) => {
       let val = typeof data === "string" ? parseInt(data) : data;
       return val;
     };
+    const convertType1 = (data: string | number | undefined) => {
+      let val = typeof data === "string" ? parseFloat(data) : data;
+      return val;
+    };
   
     function submit() {
       let data = {
 
-        Distance:         convertType(ambulancearrival.Distance),
+        Distance:         convertType1(ambulancearrival.Distance),
 		    Number_of_passenger: convertType(ambulancearrival.Number_of_passenger),
 		    DateTime:         selectedDate,
 		    AmbulanceOnDutyID:  convertType(ambulancearrival.AmbulanceOnDutyID),
@@ -252,7 +256,7 @@ const Alert = (props: AlertProps) => {
                       variant="outlined"
                       type="number"
                       size="medium"
-                      // InputProps={{ inputProps: { min: 1 } }}
+                      InputProps={{ inputProps: { min: 0 } }}
                       InputLabelProps={{
                         shrink: true,
                       }}
