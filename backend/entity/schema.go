@@ -20,7 +20,7 @@ type Patient struct {
 type AmbulanceOnDuty struct {
 	gorm.Model
 
-	Code       string    `gorm:"unique" valid:"matches(^[D]\\d{8}$)~Code not matches 'Dxxxxxxxx' x = number,required~Code must not be blank"`
+	Code       string    `valid:"matches(^[D]\\d{8}$)~Code not matches 'Dxxxxxxxx' x = number,required~Code must not be blank"`
 	OnDutyDate time.Time `valid:"today~Date must be today"`
 	Passenger  uint      `valid:"required~Passenger must be greater than zero"`
 
