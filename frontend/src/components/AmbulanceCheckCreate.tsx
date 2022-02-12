@@ -62,6 +62,7 @@ function AmbulanceCheckCreate() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -157,7 +158,7 @@ function AmbulanceCheckCreate() {
       RecorderID: convertType(employees?.ID),
       AmbulanceID: convertType(ambulancecheck.AmbulanceID),
       ProblemID: convertType(ambulancecheck.ProblemID),
-      DocCode: convertType(ambulancecheck.DocCode),
+      DocCode: ambulancecheck.DocCode ?? "",
       Severity: convertType(ambulancecheck.Severity),
       Note: ambulancecheck.Note ?? "",
       DateAndTime: selectedDate,
@@ -178,9 +179,11 @@ function AmbulanceCheckCreate() {
         if (res.data) {
           console.log("บันทึกได้")
           setSuccess(true);
+          setErrorMessage("")
         } else {
           console.log("บันทึกไม่ได้")
           setError(true);
+          setErrorMessage(res.error)
         }
       });
   }
@@ -194,7 +197,7 @@ function AmbulanceCheckCreate() {
             </Snackbar>
             <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error">
-                    บันทึกข้อมูลไม่สำเร็จ
+                    บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
                 </Alert>
             </Snackbar>
             <Paper className={classes.paper}>
