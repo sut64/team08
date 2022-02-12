@@ -59,6 +59,8 @@ const Alert = (props: AlertProps) => {
      );
      const [success, setSuccess] = useState(false);
      const [error, setError] = useState(false);
+     const [errorMessage, setErrorMessage] = useState("");
+
      const apiUrl = "http://localhost:8080";
     const requestOptions = {
       method: "GET",
@@ -179,9 +181,11 @@ const Alert = (props: AlertProps) => {
           if (res.data) {
             console.log("บันทึกได้")
             setSuccess(true);
+            setErrorMessage("")
           } else {
             console.log("บันทึกไม่ได้")
             setError(true);
+            setErrorMessage(res.error)
           }
         });
     }
@@ -196,7 +200,7 @@ const Alert = (props: AlertProps) => {
           </Snackbar>
           <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="error">
-              บันทึกข้อมูลไม่สำเร็จ
+              บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
             </Alert>
           </Snackbar>
         <Paper className={classes.paper}>
@@ -248,7 +252,7 @@ const Alert = (props: AlertProps) => {
                       variant="outlined"
                       type="number"
                       size="medium"
-                      InputProps={{ inputProps: { min: 1 } }}
+                      // InputProps={{ inputProps: { min: 1 } }}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -301,12 +305,12 @@ const Alert = (props: AlertProps) => {
                 <p>วันที่</p>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDateTimePicker
-                  name="CheckOutTime"
+                  name="DateTime"
                   value={selectedDate}
                   onChange={handleDateChange}
                   label="กรุณาเลือกวันที่"
-                  minDate={new Date("2018-01-01")}
-                  format="yyyy/MM/dd "
+                  minDate={new Date("2018-01-01T00:00")}
+                  format="yyyy/MM/dd hh:mm a"
                   />
                   </MuiPickersUtilsProvider>
               </FormControl>

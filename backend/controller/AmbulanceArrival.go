@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team08/entity"
+	"github.com/asaskevich/govalidator"
 )
 
 // POST /AmbulanceArrival
@@ -49,12 +50,26 @@ func CreateAmbulanceArrival(c *gin.Context) {
 		Recorder:            employee,        // โยงความสัมพันธ์กับ Entity Employee
 	}
 
+	//ขั้นตอนการ validate ที่นำมาจาก unit test
+	if _, err := govalidator.ValidateStruct(aa); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	
 	// 12: บันทึก
 	if err := entity.DB().Create(&aa).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": aa})
+
+	// id := c.Param("id")
+
+	// if err := entity.DB().Exec("UPDATE ambulances SET status_id = 1 WHERE id = ?", id); err.RowsAffected == 0 {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Ambulance Arrival not found 123"})
+	// 	return
+	// }
+
 }
 
 // GET /AmbulanceArrival/:id

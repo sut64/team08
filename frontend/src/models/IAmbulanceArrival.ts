@@ -4,7 +4,7 @@ import { AmbulanceOnDutyInterface } from "./IAmbulanceOnDuty";
 
 export interface AmbulanceArrivalInterface {
     ID: number,
-    Distance: number
+    Distance: number,
     Number_of_passenger: number,
     DateTime: Date,
     RecorderID:      number,
