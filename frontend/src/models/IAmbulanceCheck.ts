@@ -4,7 +4,10 @@ import { ProblemsInterface } from "./IProblem";
 
 export interface AmbulanceChecksInterface {
     ID: number, 
-    DateAndTime: Date,
+    DateTime: Date,
+    DocCode: string,
+    Severity: number,
+    Note: string,
 
     AmbulanceID: number,
     Ambulance: AmbulancesInterface,
@@ -14,8 +17,4 @@ export interface AmbulanceChecksInterface {
 
     ProblemID: number,
     Problem: ProblemsInterface,
-
-    DocCode: string,
-    Severity: number,
-    Note: string,
 }
