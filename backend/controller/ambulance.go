@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"github.com/asaskevich/govalidator"
 	"github.com/sut64/team08/entity"
 
 	"github.com/gin-gonic/gin"
@@ -46,6 +47,12 @@ func CreateAmbulance(c *gin.Context) {
 		DateTime:      ambulance.DateTime, // ตั้งค่าฟิลด์ Date_time
 		CarNumber:     ambulance.CarNumber,
 		Registration:  ambulance.Registration,
+	}
+
+	//ขั้นตอนการ validate ที่นำมาจาก unit test
+	if _, err := govalidator.ValidateStruct(ami); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	// 12: บันทึก

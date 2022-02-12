@@ -64,6 +64,7 @@ function AssessmentCreate() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -187,8 +188,10 @@ function AssessmentCreate() {
       .then((res) => {
         if (res.data) {
           setSuccess(true);
+          setErrorMessage("")
         } else {
           setError(true);
+          setErrorMessage(res.error)
         }
       });
   }
@@ -206,7 +209,7 @@ function AssessmentCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+          บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>

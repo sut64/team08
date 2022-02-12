@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team08/entity"
 )
@@ -15,31 +16,31 @@ func CreateIncident(c *gin.Context) {
 	var illness entity.Illness
 	var urgency entity.Urgency
 
-	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 11 จะถูก bind เข้าตัวแปร incident
+	// ผลลัพธ์ที่ได้จากขั้นตอนที่  จะถูก bind เข้าตัวแปร incident
 	if err := c.ShouldBindJSON(&incident); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// 12: ค้นหา Employee ด้วย ID
+	// : ค้นหา Employee ด้วย ID
 	if tx := entity.DB().Where("id = ?", incident.EmployeeID).First(&employee); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})
 		return
 	}
 
-	// 13: ค้นหา Illness ด้วย ID
+	// : ค้นหา Illness ด้วย ID
 	if tx := entity.DB().Where("id = ?", incident.IllnessID).First(&illness); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "illness not found"})
 		return
 	}
 
-	// 14: ค้นหา Urgency ด้วย ID
+	// : ค้นหา Urgency ด้วย ID
 	if tx := entity.DB().Where("id = ?", incident.UrgencyID).First(&urgency); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "urgency not found"})
 		return
 	}
 
-	// 16: สร้าง Incident
+	// : สร้าง Incident
 	ic := entity.Incident{
 		Title:         incident.Title,         // ได้หัวข้อ
 		Informer:      incident.Informer,      // ได้ชื่อผู้แจ้ง
@@ -51,7 +52,13 @@ func CreateIncident(c *gin.Context) {
 		Datetime:      incident.Datetime,      // ตั้งค่าฟิลด์ Datetime
 	}
 
-	// 17: บันทึก
+	// ขั้นตอนการ validate ที่นำมาจาก unit test
+	if _, err := govalidator.ValidateStruct(ic); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// : บันทึก
 	if err := entity.DB().Create(&ic).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
