@@ -147,6 +147,8 @@ function IncidentCreate() {
       UrgencyID: convertType(incident.UrgencyID),
 
     };
+    
+    console.log(selectedDate);
 
     const requestOptionsPost = {
       method: "POST",
