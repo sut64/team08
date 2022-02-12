@@ -1,7 +1,7 @@
 {
   "id": "c9589f97-0928-4548-9673-316612a5205a",
   "version": "2.0",
-  "name": "Ambulance Arrival",
+  "name": "B6216719-ambulancearrival",
   "url": "http://localhost:3000/ambulancearrival/create",
   "tests": [{
     "id": "4e44d4b6-6dcb-4544-b030-625fab189d85",
@@ -176,7 +176,7 @@
       "command": "select",
       "target": "name=AmbulanceOnDutyID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=2"
     }, {
       "id": "bdae7487-4fe9-4a01-9777-4a181d18b3a2",
       "comment": "",
@@ -248,7 +248,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นางสาวพร มณีวรรณ1"
+      "value": "label=นางสาวพร มณีวรรณ"
     }, {
       "id": "8ddb702c-f62a-4f2a-8c5b-c6d6e7db36ba",
       "comment": "",
@@ -400,7 +400,7 @@
       "command": "select",
       "target": "name=AmbulanceOnDutyID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=2"
     }, {
       "id": "040a8821-0ef8-4d17-a7c4-33946816225b",
       "comment": "",
@@ -472,7 +472,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นางสาวพร มณีวรรณ1"
+      "value": "label=นางสาวพร มณีวรรณ"
     }, {
       "id": "d2cf66b2-cf4b-4c02-bfd2-2dac66ba3cd5",
       "comment": "",
@@ -581,7 +581,7 @@
       "command": "select",
       "target": "name=AmbulanceOnDutyID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=2"
     }, {
       "id": "be65fe44-99ec-4357-8f6c-672ddad23797",
       "comment": "",
@@ -653,7 +653,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นางสาวพร มณีวรรณ1"
+      "value": "label=นางสาวพร มณีวรรณ"
     }, {
       "id": "ee380149-f781-461d-a49a-4c8eab8574a6",
       "comment": "",
@@ -749,7 +749,7 @@
       "command": "select",
       "target": "name=AmbulanceOnDutyID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=1"
     }, {
       "id": "414ab2de-3f3d-4e17-b69d-f1750b96419b",
       "comment": "",
@@ -821,7 +821,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นางสาวพร มณีวรรณ1"
+      "value": "label=นางสาวพร มณีวรรณ"
     }, {
       "id": "02c3abd9-85d0-4de6-9b5a-f5ce4e04d992",
       "comment": "",

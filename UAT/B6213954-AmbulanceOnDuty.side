@@ -89,7 +89,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=อบ 7448"
+      "value": "label=อบ7448"
     }, {
       "id": "7aecdeba-a57e-4075-a5b5-fc86ad1a15ea",
       "comment": "",
@@ -109,7 +109,7 @@
       "command": "select",
       "target": "name=IncidentID",
       "targets": [],
-      "value": "label=ทดสอบ"
+      "value": "label=รถชน"
     }, {
       "id": "b1f87b62-96ee-4503-bdf8-cca6b81601d5",
       "comment": "",
@@ -367,7 +367,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=อบ 7448"
+      "value": "label=อบ7448"
     }, {
       "id": "1f5bae51-3f7a-4d3a-84a2-622e5414b46e",
       "comment": "",
@@ -387,7 +387,7 @@
       "command": "select",
       "target": "name=IncidentID",
       "targets": [],
-      "value": "label=ทดสอบ"
+      "value": "label=รถชน"
     }, {
       "id": "6dcb1ef4-7f06-46a9-b14c-455c4f981bd4",
       "comment": "",
@@ -641,7 +641,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=กข 523"
+      "value": "label=อบ7448"
     }, {
       "id": "3676ca3d-e080-44e8-99d7-0d523b027364",
       "comment": "",
@@ -661,7 +661,7 @@
       "command": "select",
       "target": "name=IncidentID",
       "targets": [],
-      "value": "label=ทดสอบ"
+      "value": "label=รถชน"
     }, {
       "id": "c75f784e-8096-4eea-a13a-a3a405befebd",
       "comment": "",
@@ -888,7 +888,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=กข 523"
+      "value": "label=กข523"
     }, {
       "id": "d24d3296-96f2-490a-94ea-07ff07c7d1eb",
       "comment": "",
@@ -908,7 +908,7 @@
       "command": "select",
       "target": "name=IncidentID",
       "targets": [],
-      "value": "label=ทดสอบ"
+      "value": "label=รถชน"
     }, {
       "id": "cafd0695-bc95-465e-9bb9-c101c8b07099",
       "comment": "",

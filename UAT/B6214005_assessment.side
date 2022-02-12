@@ -61,7 +61,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นายสม จันทร์เพ็ญ1"
+      "value": "label=นายสม จันทร์เพ็ญ"
     }, {
       "id": "aaddf22a-d92f-486e-8aeb-a29ca86f525d",
       "comment": "",
@@ -276,7 +276,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นายสม จันทร์เพ็ญ1"
+      "value": "label=นายสม จันทร์เพ็ญ"
     }, {
       "id": "19c2510a-0804-4d24-9572-60be9edc704b",
       "comment": "",
@@ -435,7 +435,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นายสม จันทร์เพ็ญ1"
+      "value": "label=นายสม จันทร์เพ็ญ"
     }, {
       "id": "a8a90b07-4495-4f34-ace3-b1b0076f72ac",
       "comment": "",
@@ -521,7 +521,7 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ: Level must be only (1-3)"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: SymptomLevel: 4 does not validate as range(1|3)"
     }]
   }, {
     "id": "a1b54be0-184b-45f9-b562-aa643c86a7db",
@@ -599,7 +599,7 @@
       "command": "select",
       "target": "name=PatientID",
       "targets": [],
-      "value": "label=นางสาวพร มณีวรรณ1"
+      "value": "label=นางสาวพร มณีวรรณ"
     }, {
       "id": "d95f93a4-fbf4-47dd-b7d6-6dc86a00405e",
       "comment": "",
