@@ -96,7 +96,7 @@ func TestIncidentInformerNotNumber(t *testing.T) {
 	// err ไม่เป็น nil แปลว่าต้องจับ error ได้
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("Informer cannot be number"))
+	g.Expect(err.Error()).To(Equal("Informer cannot be blank"))
 }
 
 func TestIncidentNumberpatientNotZero(t *testing.T) {
