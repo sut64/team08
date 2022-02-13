@@ -81,7 +81,7 @@ func TestIncidentInformerNotNumber(t *testing.T) {
 
 	incident := Incident{
 		Title:         "Benzaaa",
-		Informer:      "abc1319922", //wrong
+		Informer:      "", //wrong
 		Numberpatient: 1,
 		Location:      "BBB",
 		Datetime:      time.Now(),
