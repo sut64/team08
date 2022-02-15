@@ -532,7 +532,7 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ: must be greater than equal to zero"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: Number of passenger must be greater than equal to zero"
     }]
   }, {
     "id": "5ac4b4cb-b62f-4783-8e93-9b3e42c1a1db",
@@ -700,7 +700,7 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ: must be greater to zero"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: Distance must be greater to zero"
     }]
   }, {
     "id": "a29c528f-163b-48f0-8cba-a4ed47036246",

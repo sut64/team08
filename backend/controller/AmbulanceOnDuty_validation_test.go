@@ -14,7 +14,7 @@ func TestAmbulanceOnDutyPass(t *testing.T) {
 
 	// ข้อมูลถูกต้องหมดทุก field
 	ambulanceOnDuty := entity.AmbulanceOnDuty{
-		Code:       "D00000000",
+		Code:       "D12345678",
 		OnDutyDate: time.Now(),
 		Passenger:  2,
 	}

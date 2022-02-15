@@ -38,8 +38,8 @@ type AmbulanceOnDuty struct {
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int       `valid:"required,positive~must be greater than equal to zero"`
-	Distance            float32   `valid:"required,Positivedecimal~must be greater to zero"`
+	Number_of_passenger int       `valid:"required,positive~Number of passenger must be greater than equal to zero"`
+	Distance            float32   `valid:"required,Positivedecimal~Distance must be greater to zero"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
 
 	RecorderID *uint
@@ -136,7 +136,7 @@ type Illness struct {
 type Incident struct {
 	gorm.Model
 	Title         string    `valid:"required~Title cannot be blank"`
-	Informer      string    `valid:"required~Informer cannot be blank"`
+	Informer      string    `valid:"matches(^[ก-ฮa-zA-Z]+$)~Informer cannot be number, required~Informer cannot be blank"`
 	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
 	Location      string    `valid:"required~Location cannot be blank"`
 	Datetime      time.Time `valid:"today~DateTime must be present"`
