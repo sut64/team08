@@ -38,8 +38,8 @@ type AmbulanceOnDuty struct {
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int       `valid:"required,Positivenumber~must be greater than equal to zero"`
-	Distance            float32   `valid:"required,Positivedecimal~must be greater to zero"`
+	Number_of_passenger int       `valid:"required,Positivenumber~Number of passenger must be greater than equal to zero"`
+	Distance            float32   `valid:"required,Positivedecimal~Distance must be greater to zero"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
 
 	RecorderID *uint
