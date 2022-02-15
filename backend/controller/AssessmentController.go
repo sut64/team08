@@ -11,22 +11,48 @@ import (
 
 func CreateAssessment(c *gin.Context) {
 	var assessment entity.Assessment
+	var patient entity.Patient
+	var employee entity.Employee
+	var incident entity.Incident
+
 	if err := c.ShouldBindJSON(&assessment); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	// ค้นหา ผู้ป่วย ด้วย id
+	if tx := entity.DB().Where("id = ?", assessment.PatientID).First(&patient); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Patient not found"})
+		return
+	}
+
+	// ค้นหา incident ด้วย id
+	if tx := entity.DB().Where("id = ?", assessment.IncidentID).First(&incident); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Incident not found"})
+		return
+	}
+	// สร้าง Assessment
+	as := entity.Assessment{
+		Patient:      patient,
+		Incident:     incident,
+		Recorder:     employee,
+		Symptom:      assessment.Symptom,
+		SymptomLevel: assessment.SymptomLevel,
+		Datetime:     assessment.Datetime,
+	}
+
 	// Validation part
-	if _, err := govalidator.ValidateStruct(assessment); err != nil {
+	if _, err := govalidator.ValidateStruct(as); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if err := entity.DB().Create(&assessment).Error; err != nil {
+	if err := entity.DB().Create(&as).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": assessment})
+	c.JSON(http.StatusOK, gin.H{"data": as})
 }
 
 func GetAssessment(c *gin.Context) {

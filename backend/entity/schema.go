@@ -38,8 +38,8 @@ type AmbulanceOnDuty struct {
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int       `valid:"required,Positivenumber~must be greater than equal to zero"`
-	Distance            float32   `valid:"required,Positivedecimal~must be greater to zero"`
+	Number_of_passenger int       `valid:"required,Positivenumber~Number of passenger must be greater than equal to zero"`
+	Distance            float32   `valid:"required,Positivedecimal~Distance must be greater to zero"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
 
 	RecorderID *uint
@@ -109,22 +109,22 @@ type Employee struct {
 
 type AmbulanceCheck struct {
 	gorm.Model
-	DateTime time.Time
+	DateTime time.Time `valid:"today~Time must be current date"`
 
-	DocCode  string
-	Severity uint
+	DocCode  string `valid:"matches(^[A-Z]{3}\\d{3}$),required~DocCode must be in correct form"`
+	Severity int    `valid:"int,range(1|3),required~Level must be between 1-3"`
 	Note     string
 
 	//AmbulanceID ทำหน้าที่เป็น FK
 	AmbulanceID *uint
-	Ambulance   Ambulance `gorm:"references:id"`
+	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
 
 	//RecorderID ทำหน้าที่เป็น FK
 	RecorderID *uint
-	Recorder   Employee `gorm:"references:id"`
+	Recorder   Employee `gorm:"references:id" valid:"-"`
 
 	ProblemID *uint
-	Problem   Problem `gorm:"references:id"`
+	Problem   Problem `gorm:"references:id" valid:"-"`
 }
 
 type Illness struct {

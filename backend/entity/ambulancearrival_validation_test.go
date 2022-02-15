@@ -69,7 +69,7 @@ func TestAmbulanceArrivalNumberPatientBeInvalid(t *testing.T) {
 	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("must be greater than equal to zero"))
+	g.Expect(err.Error()).To(Equal("Number of passenger must be greater than equal to zero"))
 
 }
 
@@ -92,5 +92,5 @@ func TestAmbulanceArrivalDistanceMustBeValid(t *testing.T) {
 	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("must be greater to zero"))
+	g.Expect(err.Error()).To(Equal("Distance must be greater to zero"))
 }

@@ -73,7 +73,6 @@ function PaymentCreate() {
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
-      window.location.href = "/";
       return;
     }
     setSuccess(false);

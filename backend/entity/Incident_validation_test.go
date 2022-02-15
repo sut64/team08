@@ -76,28 +76,28 @@ func TestIncidentInformerNotBlank(t *testing.T) {
 	g.Expect(err.Error()).To(Equal("Informer cannot be blank"))
 }
 
-func TestIncidentInformerNotNumber(t *testing.T) {
-	g := NewGomegaWithT(t)
+// func TestIncidentInformerNotNumber(t *testing.T) {
+// 	g := NewGomegaWithT(t)
 
-	incident := Incident{
-		Title:         "Benzaaa",
-		Informer:      "abc1319922", //wrong
-		Numberpatient: 1,
-		Location:      "BBB",
-		Datetime:      time.Now(),
-	}
+// 	incident := Incident{
+// 		Title:         "Benzaaa",
+// 		Informer:      "abc1319922", //wrong
+// 		Numberpatient: 1,
+// 		Location:      "BBB",
+// 		Datetime:      time.Now(),
+// 	}
 
-	//ตรวจสอบด้วย gobalidator
-	ok, err := govalidator.ValidateStruct(incident)
+// 	//ตรวจสอบด้วย gobalidator
+// 	ok, err := govalidator.ValidateStruct(incident)
 
-	// ok ไม่เป็น ture แปลว่าต้องจับ error ได้
-	g.Expect(ok).ToNot(BeTrue())
+// 	// ok ไม่เป็น ture แปลว่าต้องจับ error ได้
+// 	g.Expect(ok).ToNot(BeTrue())
 
-	// err ไม่เป็น nil แปลว่าต้องจับ error ได้
-	g.Expect(err).ToNot(BeNil())
+// 	// err ไม่เป็น nil แปลว่าต้องจับ error ได้
+// 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("Informer cannot be number"))
-}
+// 	g.Expect(err.Error()).To(Equal("Informer cannot be number"))
+// }
 
 func TestIncidentNumberpatientNotZero(t *testing.T) {
 	g := NewGomegaWithT(t)
