@@ -42,14 +42,14 @@ func CreateIncident(c *gin.Context) {
 
 	// : สร้าง Incident
 	ic := entity.Incident{
-		Title:         incident.Title,         // ได้หัวข้อ
-		Informer:      incident.Informer,      // ได้ชื่อผู้แจ้ง
-		Numberpatient: incident.Numberpatient, // ได้ตัวเลขจำนวนคาดการณ์ผู้ป่วย
-		Location:      incident.Location,      // ได้ Location
-		Employee:      employee,               // โยงความสัมพันธ์กับ Entity employee
-		Illness:       illness,                // โยงความสัมพันธ์กับ Entity illness
-		Urgency:       urgency,                // โยงความสัมพันธ์กับ Entity Urgency
-		Datetime:      incident.Datetime,      // ตั้งค่าฟิลด์ Datetime
+		Title:         incident.Title,            // ได้หัวข้อ
+		Informer:      incident.Informer,         // ได้ชื่อผู้แจ้ง
+		Numberpatient: incident.Numberpatient,    // ได้ตัวเลขจำนวนคาดการณ์ผู้ป่วย
+		Location:      incident.Location,         // ได้ Location
+		Employee:      employee,                  // โยงความสัมพันธ์กับ Entity employee
+		Illness:       illness,                   // โยงความสัมพันธ์กับ Entity illness
+		Urgency:       urgency,                   // โยงความสัมพันธ์กับ Entity Urgency
+		Datetime:      incident.Datetime.Local(), // ตั้งค่าฟิลด์ Datetime
 	}
 
 	// ขั้นตอนการ validate ที่นำมาจาก unit test

@@ -136,7 +136,7 @@ type Illness struct {
 type Incident struct {
 	gorm.Model
 	Title         string    `valid:"required~Title cannot be blank"`
-	Informer      string    `valid:"required~Informer cannot be blank"`
+	Informer      string    `valid:"matches(^[ก-ฮa-zA-Z]+$)~Informer cannot be number, required~Informer cannot be blank"`
 	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
 	Location      string    `valid:"required~Location cannot be blank"`
 	Datetime      time.Time `valid:"today~DateTime must be present"`
