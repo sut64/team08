@@ -50,7 +50,7 @@ func CreateAmbulanceArrival(c *gin.Context) {
 	aa := entity.AmbulanceArrival{
 		Distance:            ambulancearrival.Distance,
 		Number_of_passenger: ambulancearrival.Number_of_passenger,
-		DateTime:            ambulancearrival.DateTime,
+		DateTime:            ambulancearrival.DateTime.Local(),
 		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
 		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
 		Recorder:            employee,        // โยงความสัมพันธ์กับ Entity Employee
@@ -67,13 +67,6 @@ func CreateAmbulanceArrival(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	// id := c.Param("id")
-
-	// if err := entity.DB().Exec("UPDATE ambulances SET status_id = 1 WHERE id = ?", id); err.RowsAffected == 0 {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Ambulance Arrival not found"})
-	// 	return
-	// }
 
 	c.JSON(http.StatusOK, gin.H{"data": aa})
 
