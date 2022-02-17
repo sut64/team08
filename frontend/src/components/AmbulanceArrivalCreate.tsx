@@ -240,7 +240,7 @@ const Alert = (props: AlertProps) => {
                   </option>
                   {ambulaneonduty.map((item: AmbulanceOnDutyInterface) => (
                     <option value={item.ID} key={item.ID}>
-                      {item.Ambulance.CarNumber}
+                      {item.Ambulance.Registration}
                     </option>
                   ))}
                 </Select>
