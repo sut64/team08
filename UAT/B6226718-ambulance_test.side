@@ -344,7 +344,7 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกผิดพลาด: CarNumber: -3 does not validate as mtzero"
+      "value": "บันทึกผิดพลาด: CarNumber: -3 does not validate as positive"
     }, {
       "id": "95b2cd28-a920-4f14-a6cb-8ba9f9c66f0b",
       "comment": "",

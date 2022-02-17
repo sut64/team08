@@ -14,7 +14,7 @@ func TestAmbulanceOnDutyPass(t *testing.T) {
 
 	// ข้อมูลถูกต้องหมดทุก field
 	ambulanceOnDuty := entity.AmbulanceOnDuty{
-		Code:       "D00000000",
+		Code:       "D12345678",
 		OnDutyDate: time.Now(),
 		Passenger:  2,
 	}
@@ -70,7 +70,7 @@ func TestAmbulanceOnDutyCodeMatches(t *testing.T) {
 
 		g.Expect(err).ToNot(BeNil())
 
-		g.Expect(err.Error()).To(Equal("Code not matches 'Dxxxxxxxx' x = number"))
+		g.Expect(err.Error()).To(Equal("Code not matches 'Dxxxxxxxx' ex. D00000000"))
 	}
 }
 
@@ -79,7 +79,7 @@ func TestAmbulanceOnDutyDateToDay(t *testing.T) {
 
 	ambulanceOnDuty := entity.AmbulanceOnDuty{
 		Code:       "D12345678",
-		OnDutyDate: time.Now().Add(24 * time.Hour), //วันที่ไม่เป็นปัจจุบัน ผิด
+		OnDutyDate: time.Now().Add(50 * time.Hour), //วันที่ไม่เป็นปัจจุบัน ผิด
 		Passenger:  2,
 	}
 	ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
@@ -98,6 +98,23 @@ func TestAmbulanceOnDutyPassengerNotZero(t *testing.T) {
 		Code:       "D12345678",
 		OnDutyDate: time.Now(),
 		Passenger:  0, //ผู้โดยสารเป็น 0 ผิด
+	}
+	ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
+
+	g.Expect(ok).ToNot(BeTrue())
+
+	g.Expect(err).ToNot(BeNil())
+
+	g.Expect(err.Error()).To(Equal("Passenger must not be zero"))
+}
+
+func TestAmbulanceOnDutyPassengerNotNegative(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	ambulanceOnDuty := entity.AmbulanceOnDuty{
+		Code:       "D12345678",
+		OnDutyDate: time.Now(),
+		Passenger:  -5, //ผู้โดยสารเป็น 0 ผิด
 	}
 	ok, err := govalidator.ValidateStruct(ambulanceOnDuty)
 

@@ -831,16 +831,6 @@
       ],
       "value": ""
     }, {
-      "id": "d7a6e5fc-a3f5-4cff-92aa-974086c83032",
-      "comment": "",
-      "command": "click",
-      "target": "css=.vsc-initialized",
-      "targets": [
-        ["css=.vsc-initialized", "css:finder"],
-        ["xpath=//body", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "bc0dae4a-2a73-46e4-8cde-83bed8463aa5",
       "comment": "",
       "command": "click",
