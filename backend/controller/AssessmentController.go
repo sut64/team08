@@ -20,17 +20,21 @@ func CreateAssessment(c *gin.Context) {
 		return
 	}
 
-	// ค้นหา ผู้ป่วย ด้วย id
 	if tx := entity.DB().Where("id = ?", assessment.PatientID).First(&patient); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Patient not found"})
 		return
 	}
 
-	// ค้นหา incident ด้วย id
 	if tx := entity.DB().Where("id = ?", assessment.IncidentID).First(&incident); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Incident not found"})
 		return
 	}
+
+	if tx := entity.DB().Where("id = ?", assessment.RecorderID).First(&employee); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Recorder not found"})
+		return
+	}
+
 	// สร้าง Assessment
 	as := entity.Assessment{
 		Patient:      patient,
