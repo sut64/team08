@@ -56,7 +56,7 @@ function AssessmentCreate() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [patients, setPatients] = useState<PatientInterface[]>([]);
-  const [employees, setEmployee] = useState<EmployeesInterface>();
+  const [employees, setEmployees] = useState<EmployeesInterface>();
   const [incidents, setIncidents] = useState<IncidentsInterface[]>([]);
   const [assessment, setAssessment] = useState<Partial<AssessmentInterface>>(
     {}
@@ -143,13 +143,12 @@ function AssessmentCreate() {
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          setEmployee(res.data);
+          setEmployees(res.data);
         } else {
           console.log("else");
         }
       });
   };
-
 
   useEffect(() => {
     getIncidents();
@@ -166,7 +165,7 @@ function AssessmentCreate() {
     let data = {
       IncidentID: convertType(assessment.IncidentID),
       PatientID: convertType(assessment.PatientID),
-      EmployeeID: convertType(employees?.ID),
+      RecorderID: convertType(employees?.ID),
       Datetime: selectedDate,
       Symptom: assessment.Symptom ?? "",
       SymptomLevel: convertType(assessment.SymptomLevel),
@@ -229,7 +228,7 @@ function AssessmentCreate() {
         <Grid container spacing={3} className={classes.root}>
             <Grid item xs={6}>
               <FormControl fullWidth variant="outlined">
-                <p>หมายเลขรับเหตุ</p>
+                <p>หัวข้อ รับเหตุ</p>
                 <Select
                   native
                   value={assessment.IncidentID}
@@ -239,11 +238,11 @@ function AssessmentCreate() {
                   }}
                 >
                   <option aria-label="None" value="">
-                    กรุณาเลือกเลขเกิดเหตุ                  
+                    กรุณาเลือกหัวข้อ                 
                   </option>
                   {incidents.map((item: IncidentsInterface) => (
                     <option value={item.ID} key={item.ID}>
-                      {item.ID}
+                      {item.Title}
                     </option>
                   ))}
                 </Select>
@@ -274,26 +273,17 @@ function AssessmentCreate() {
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
             <p>พนักงานที่บันทึกข้อมูล</p>
-                  <Select
-                    native
-                    disabled
-                    value={assessment.RecorderID}
-                    // onChange={handleChange}
-                    // inputProps={{
-                    //   name: "RecorderID",
-                    // }}
-                  >
-                    <option aria-labe1="None" value="">
-                        {employees?.Name}
-                      </option>
 
-                {/* {employees?.map((item: EmployeeInterface) => (
-                  <option value={item.ID} key={item.ID}>
-                    {item.Name}
-                  </option>
-                ))} */}
+                {<Select
+                  native
+                  disabled
+                  value={assessment.RecorderID}
+                >
+                  <option aria-label="None" value="">
+                  {employees?.Name}
+                </option>
+                </Select>}
 
-              </Select>
             </FormControl>
           </Grid>
           <Grid item xs={6}>
