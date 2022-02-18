@@ -20,9 +20,9 @@ type Patient struct {
 type AmbulanceOnDuty struct {
 	gorm.Model
 
-	Code       string    `valid:"matches(^[D]\\d{8}$)~Code not matches 'Dxxxxxxxx' x = number,required~Code must not be blank"`
+	Code       string    `gorm:"uniqueIndex" valid:"matches(^[D]\\d{8}$)~Code not matches 'Dxxxxxxxx' ex. D00000000,required~Code must not be blank"`
 	OnDutyDate time.Time `valid:"today~Date must be today"`
-	Passenger  uint      `valid:"required~Passenger must be greater than zero"`
+	Passenger  int       `valid:"required~Passenger must not be zero, positive~Passenger must be greater than zero"`
 
 	AmbulanceID *uint
 	Ambulance   Ambulance `gorm:"references:id" valid:"-"`
@@ -33,13 +33,13 @@ type AmbulanceOnDuty struct {
 	IncidentID *uint
 	Incident   Incident `gorm:"references:id" valid:"-"`
 
-	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:AmbulanceOnDutyID"`
+	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:AmbulanceOnDutyID" valid:"-"`
 }
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int       `valid:"required,Positivenumber~must be greater than equal to zero"`
-	Distance            float32   `valid:"required,Positivedecimal~must be greater to zero"`
+	Number_of_passenger int       `valid:"required,positive~Number of passenger must be greater to zero"`
+	Distance            float32   `valid:"required~Distance must be greater to zero,positivedecimal~Distance must be a positive decimal"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
 
 	RecorderID *uint
@@ -71,7 +71,7 @@ type Assessment struct {
 
 type Ambulance struct {
 	gorm.Model
-	CarNumber    int       `valid:"required,mtzero"`
+	CarNumber    int       `gorm:"uniqueIndex" valid:"required,positive"`
 	Registration string    `valid:"matches(^[ก-ฮ]{2}\\d{1}$|^[ก-ฮ]{2}\\d{2}$|^[ก-ฮ]{2}\\d{3}$|^[ก-ฮ]{2}\\d{4}$|^1[ก-ฮ]{2}\\d{1}$|^1[ก-ฮ]{2}\\d{2}$|^1[ก-ฮ]{2}\\d{3}$|^1[ก-ฮ]{2}\\d{4}$)"`
 	DateTime     time.Time `valid:"today~AmbulanceDate not true"`
 
@@ -105,6 +105,7 @@ type Employee struct {
 	Assessments      []Assessment       `gorm:"foreignKey:RecorderID"`
 	Incident         []Incident         `gorm:"foreignKey:EmployeeID"`
 	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:RecorderID"`
+	AmbulanceOnDuty  []AmbulanceOnDuty  `gorm:"foreignKey:RecorderID"`
 }
 
 type AmbulanceCheck struct {
@@ -136,7 +137,7 @@ type Illness struct {
 type Incident struct {
 	gorm.Model
 	Title         string    `valid:"required~Title cannot be blank"`
-	Informer      string    `valid:"alpha~Informer cannot be number, required~Informer cannot be blank"`
+	Informer      string    `valid:"required~Informer cannot be blank"`
 	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
 	Location      string    `valid:"required~Location cannot be blank"`
 	Datetime      time.Time `valid:"today~DateTime must be present"`
@@ -184,26 +185,9 @@ func init() {
 		n := i.(int)
 		return n >= 1
 	})
-
-	govalidator.CustomTypeTagMap.Set("mtzero", func(i interface{}, context interface{}) bool {
-		c, _ := i.(int)
-		return c > 0
-	})
-	govalidator.CustomTypeTagMap.Set("Positivenumber", func(i interface{}, context interface{}) bool {
-		n := i.(int)
-		if n <= 0 {
-			return false
-		} else {
-			return true
-		}
-	})
-	govalidator.CustomTypeTagMap.Set("Positivedecimal", func(i interface{}, context interface{}) bool {
+	govalidator.CustomTypeTagMap.Set("positivedecimal", func(i interface{}, context interface{}) bool {
 		d := i.(float32)
-		if d <= 0.0 {
-			return false
-		} else {
-			return true
-		}
+		return d > 0.00
 	})
 
 }

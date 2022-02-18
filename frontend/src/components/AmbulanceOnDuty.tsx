@@ -73,7 +73,6 @@ function PaymentCreate() {
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
-      window.location.href = "/";
       return;
     }
     setSuccess(false);
@@ -175,6 +174,7 @@ function PaymentCreate() {
           console.log("บันทึกได้");
           setSuccess(true);
           setErrorMasage("");
+          getAmbulances();
         } else {
           console.log("บันทึกไม่ได้");
           setError(true);

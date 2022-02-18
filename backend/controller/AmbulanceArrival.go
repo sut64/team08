@@ -8,13 +8,14 @@ import (
 	"github.com/asaskevich/govalidator"
 )
 
-// POST /AmbulanceArrival
+// POST /amnluncearrivals/:id
 func CreateAmbulanceArrival(c *gin.Context) {
 
 	var ambulancearrival entity.AmbulanceArrival
 	var employee entity.Employee
 	var patient entity.Patient
 	var ambulanceonduty entity.AmbulanceOnDuty
+	var ambulance entity.Ambulance
 
 	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 7 จะถูก bind เข้าตัวแปร ambulanceArrival
 	if err := c.ShouldBindJSON(&ambulancearrival); err != nil {
@@ -40,14 +41,19 @@ func CreateAmbulanceArrival(c *gin.Context) {
 		return
 	}
 
+	if tx := entity.DB().Model(&ambulance).Where(ambulanceonduty.AmbulanceID).Update("status_id", 1); tx.RowsAffected == 0{
+		c.JSON(http.StatusBadRequest, gin.H{"error": "not found"})
+		return
+	}
+
 	// 11: สร้าง AmbulanceArrival
 	aa := entity.AmbulanceArrival{
-		Distance:            ambulancearrival.Distance,
 		Number_of_passenger: ambulancearrival.Number_of_passenger,
-		DateTime:            ambulancearrival.DateTime,
-		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
-		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
+		Distance:            ambulancearrival.Distance,
+		DateTime:            ambulancearrival.DateTime.Local(),
 		Recorder:            employee,        // โยงความสัมพันธ์กับ Entity Employee
+		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
+		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
 	}
 
 	//ขั้นตอนการ validate ที่นำมาจาก unit test
@@ -61,18 +67,12 @@ func CreateAmbulanceArrival(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{"data": aa})
-
-	// id := c.Param("id")
-
-	// if err := entity.DB().Exec("UPDATE ambulances SET status_id = 1 WHERE id = ?", id); err.RowsAffected == 0 {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Ambulance Arrival not found 123"})
-	// 	return
-	// }
 
 }
 
-// GET /AmbulanceArrival/:id
+// GET /amnluncearrival/:id
 func GetAmbulanceArrival(c *gin.Context) {
 	var ambulancearrival entity.AmbulanceArrival
 	id := c.Param("id")
@@ -83,17 +83,17 @@ func GetAmbulanceArrival(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrival})
 }
 
-// GET /AmbulanceArrival
 func ListAmbulanceArrivals(c *gin.Context) {
 	var ambulancearrivals []entity.AmbulanceArrival
-	if err := entity.DB().Preload("AmbulanceOnDuty").Preload("Patient").Preload("Recorder").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {
+	if err := entity.DB().Preload("Recorder").Preload("Patient").Preload("AmbulanceOnDuty").Preload("AmbulanceOnDuty.Ambulance").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrivals})
 }
 
-// Delete /AmbulanceArrivals/:id
+// Delete /amnluncearrivals/:id
 func DeleteAmbulanceArrival(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM ambulance_arrivals WHERE id = ?", id); tx.RowsAffected == 0 {
@@ -103,7 +103,7 @@ func DeleteAmbulanceArrival(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
-// PATCH /AmbulanceArrivals
+// PATCH /amnluncearrivals
 func UpdateAmbulanceArrival(c *gin.Context) {
 	var ambulancearrival entity.AmbulanceArrival
 	if err := c.ShouldBindJSON(&ambulancearrival); err != nil {

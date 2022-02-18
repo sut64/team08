@@ -4,10 +4,6 @@
   "name": "B6100124 - ambulance_check",
   "url": "http://localhost:3000/",
   "tests": [{
-    "id": "5c224853-9f1f-48cc-93c5-16417e8ddc78",
-    "name": "Untitled",
-    "commands": []
-  }, {
     "id": "086c35e9-d268-40b3-a787-3ce740210b96",
     "name": "B6100124 - บันทึกถูกต้อง",
     "commands": [{
@@ -143,7 +139,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=3"
     }, {
       "id": "a121cef4-da5c-4861-a541-3f8fb82cdfb0",
       "comment": "",
@@ -341,17 +337,6 @@
       ],
       "value": ""
     }, {
-      "id": "cbc746b3-9f61-4d3a-9de1-3876b8c9bd75",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
-        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "30f47ad0-deef-43c3-82d2-d596658a4f28",
       "comment": "",
       "command": "click",
@@ -472,7 +457,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=1"
     }, {
       "id": "2cfd4874-a124-4e93-948a-71e9383455e8",
       "comment": "",
@@ -725,7 +710,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=100"
+      "value": "label=1"
     }, {
       "id": "8d108e00-9e54-4927-aa0b-178ea6cd4c17",
       "comment": "",
@@ -995,7 +980,7 @@
       "command": "select",
       "target": "name=AmbulanceID",
       "targets": [],
-      "value": "label=102"
+      "value": "label=2"
     }, {
       "id": "927ce025-d2dc-40a7-b03b-16319edc0c5d",
       "comment": "",
@@ -1108,7 +1093,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["5c224853-9f1f-48cc-93c5-16417e8ddc78"]
+    "tests": []
   }],
   "urls": ["http://localhost:3000/"],
   "plugins": []

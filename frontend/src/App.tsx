@@ -33,6 +33,7 @@ import TocIcon from '@material-ui/icons/Toc';
 import BallotIcon from '@material-ui/icons/Ballot';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import BuildIcon from '@material-ui/icons/Build';
+import DescriptionRoundedIcon from "@material-ui/icons/DescriptionRounded";
 
 import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
 import Home from "./components/Home";
@@ -45,9 +46,11 @@ import Navbar from "./components/Navbar";
 import IncidentCreate from "./components/IncidentCreate";
 import IncidentShow from "./components/IncidentShow"
 import AmbulanceArrivalCreate from "./components/AmbulanceArrivalCreate";
+import AmbulanceArrivals from "./components/AmbulanceArrivals";
 import AssessmentCreate from "./components/AssessmentForm";
 import AmbulanceOnDutyCreate from "./components/AmbulanceOnDuty";
 import AmbulanceOnDutyDisplay from "./components/AmbulanceOnDutyDisplay";
+
 
  
 const drawerWidth = 240;
@@ -143,6 +146,7 @@ export default function MiniDrawer() {
     { name: "การรับเหตุ", icon: <ReceiptIcon />, path: "/incident/create" },
     { name: "แสดงข้อมูลการรับเหตุ", icon: <TocIcon />, path: "/incident/show" },
     { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
+    { name: "Ambulance Arrival Display", icon: <DescriptionRoundedIcon />, path: "/ambulancearrivals/show" },
     { name: "การรถโรงพยาบาลออกไปปฏิบัติหน้าที่", icon: <AccessAlarmIcon />, path: "/ambulanceonduty/display" },
     { name: "ประเมินอาการผู้ป่วย", icon: <BallotIcon />, path: "/assessment/create" },
     { name: "ตรวจเช็คความเรียบร้อย", icon: <BuildIcon />, path: "/ambulancechecks/create" },
@@ -245,6 +249,7 @@ export default function MiniDrawer() {
               <Route exact path="/incident/show" component={IncidentShow} />
               <Route exact path="/incident/create" component={IncidentCreate} />
               <Route exact path="/ambulancearrival/create" component={AmbulanceArrivalCreate}/>
+              <Route exact path="/ambulancearrivals/show" component={AmbulanceArrivals}/>
               <Route exact path="/assessment/create" component={AssessmentCreate}/>
               <Route exact path="/ambulancechecks/create" component={AmbulanceCheckCreate}/>
               <Route exact path="/ambulancechecks/display" component={AmbulanceCheck}/>

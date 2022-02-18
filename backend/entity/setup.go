@@ -227,8 +227,5 @@ func SetupDatabase() {
 	// 	Numberpatient: 2,
 	// 	Location:      "บ้านปรเมต",
 	// 	Datetime:      time.Now(),
-	// 	Employee:      porn,
-	// 	Illness:       death,
-	// 	Urgency:       urfast,
 	// })
 }
