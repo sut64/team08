@@ -105,7 +105,7 @@ func TestIncidentNumberpatientNotNegative(t *testing.T) {
 	incident := Incident{
 		Title:         "TTTTT",
 		Informer:      "AAA",
-		Numberpatient: -1, // ผิด
+		Numberpatient: -1, // ผิด...
 		Location:      "BBB",
 		Datetime:      time.Now(),
 	}
