@@ -56,7 +56,7 @@ func TestAmbulanceArrivalNumberPatientBeInvalid(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	ambulancearrival := AmbulanceArrival{
-		Number_of_passenger: -5, //ผิด
+		Number_of_passenger: -1, //ผิด
 		Distance:            5.8,
 		DateTime:            time.Now(),
 	}
@@ -69,7 +69,7 @@ func TestAmbulanceArrivalNumberPatientBeInvalid(t *testing.T) {
 	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("Number of passenger must be greater than equal to zero"))
+	g.Expect(err.Error()).To(Equal("Number of passenger must be greater to zero"))
 
 }
 
@@ -92,5 +92,5 @@ func TestAmbulanceArrivalDistanceMustBeValid(t *testing.T) {
 	// err เป็นค่า nil แปลว่าไม่มี error
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("Distance must be greater to zero"))
+	g.Expect(err.Error()).To(Equal("Distance must be a positive decimal"))
 }

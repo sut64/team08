@@ -48,11 +48,11 @@ func main() {
 			protected.DELETE("/employees/:id", controller.DeleteEmployee)
 
 			// AmbulanceArrival Routes
-			protected.GET("/amnluncearrivals", controller.ListAmbulanceArrivals)
-			protected.GET("/amnluncearrival/:id", controller.GetAmbulanceArrival)
-			protected.POST("/amnluncearrivals", controller.CreateAmbulanceArrival)
-			protected.PATCH("/amnluncearrivals", controller.UpdateAmbulanceArrival)
-			protected.DELETE("/amnluncearrivals/:id", controller.DeleteAmbulanceArrival)
+			protected.GET("/ambulancearrivals", controller.ListAmbulanceArrivals)
+			protected.GET("/ambulancearrival/:id", controller.GetAmbulanceArrival)
+			protected.POST("/ambulancearrivals", controller.CreateAmbulanceArrival)
+			protected.PATCH("/ambulancearrivals", controller.UpdateAmbulanceArrival)
+			protected.DELETE("/ambulancearrivals/:id", controller.DeleteAmbulanceArrival)
 
 			// AmbulanceOnDuty Routes
 			protected.GET("/ambulanceonduties", controller.ListAmbulanceOnDutys)

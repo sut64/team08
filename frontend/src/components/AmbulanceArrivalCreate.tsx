@@ -160,13 +160,12 @@ const Alert = (props: AlertProps) => {
   
     function submit() {
       let data = {
-
+        Number_of_passenger: convertType(ambulancearrival.Number_of_passenger),
         Distance:         convertType1(ambulancearrival.Distance),
-		    Number_of_passenger: convertType(ambulancearrival.Number_of_passenger),
 		    DateTime:         selectedDate,
-		    AmbulanceOnDutyID:  convertType(ambulancearrival.AmbulanceOnDutyID),
-		    PatientID:          convertType(ambulancearrival.PatientID),
 		    RecorderID: convertType(employee?.ID),
+		    PatientID:          convertType(ambulancearrival.PatientID),
+        AmbulanceOnDutyID:  convertType(ambulancearrival.AmbulanceOnDutyID),
       };
       console.log(data);
   
@@ -179,7 +178,7 @@ const Alert = (props: AlertProps) => {
         body: JSON.stringify(data),
       };
   
-      fetch(`${apiUrl}/amnluncearrivals`, requestOptionsPost)
+      fetch(`${apiUrl}/ambulancearrivals`, requestOptionsPost)
         .then((response) => response.json())
         .then((res) => {
           if (res.data) {
@@ -256,7 +255,7 @@ const Alert = (props: AlertProps) => {
                       variant="outlined"
                       type="number"
                       size="medium"
-                      InputProps={{ inputProps: { min: 0 } }}
+                      InputProps={{ inputProps: { min: 1 } }}
                       InputLabelProps={{
                         shrink: true,
                       }}
