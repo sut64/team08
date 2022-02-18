@@ -48,12 +48,12 @@ func CreateAmbulanceArrival(c *gin.Context) {
 
 	// 11: สร้าง AmbulanceArrival
 	aa := entity.AmbulanceArrival{
-		Distance:            ambulancearrival.Distance,
 		Number_of_passenger: ambulancearrival.Number_of_passenger,
+		Distance:            ambulancearrival.Distance,
 		DateTime:            ambulancearrival.DateTime.Local(),
-		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
-		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
 		Recorder:            employee,        // โยงความสัมพันธ์กับ Entity Employee
+		Patient:             patient,         // โยงความสัมพันธ์กับ Entity Patient
+		AmbulanceOnDuty:     ambulanceonduty, // โยงความสัมพันธ์กับ Entity AmbulanceOnDuty ในตาราง AmbulanceArrival
 	}
 
 	//ขั้นตอนการ validate ที่นำมาจาก unit test
@@ -84,12 +84,21 @@ func GetAmbulanceArrival(c *gin.Context) {
 }
 
 // GET /amnluncearrivals
+// func ListAmbulanceArrivals(c *gin.Context) {
+// 	var ambulancearrivals []entity.AmbulanceArrival
+// 	if err := entity.DB().Preload("AmbulanceOnDuty").Preload("Patient").Preload("Recorder").Preload("AmbulanceOnduty.Ambulance").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+// 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrivals})
+// }
 func ListAmbulanceArrivals(c *gin.Context) {
 	var ambulancearrivals []entity.AmbulanceArrival
-	if err := entity.DB().Preload("AmbulanceOnDuty").Preload("Patient").Preload("Recorder").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {
+	if err := entity.DB().Preload("Recorder").Preload("Patient").Preload("AmbulanceOnDuty").Preload("AmbulanceOnDuty.Ambulance").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrivals})
 }
 

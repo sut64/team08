@@ -33,18 +33,18 @@ type AmbulanceOnDuty struct {
 	IncidentID *uint
 	Incident   Incident `gorm:"references:id" valid:"-"`
 
-	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:AmbulanceOnDutyID"`
+	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:AmbulanceOnDutyID" valid:"-"`
 }
 
 type AmbulanceArrival struct {
 	gorm.Model
-	Number_of_passenger int       `valid:"required,positive~Number of passenger must be greater than equal to zero"`
-	Distance            float32   `valid:"required,Positivedecimal~Distance must be greater to zero"`
+	Number_of_passenger int       `valid:"required,positive~Number of passenger must be greater to zero"`
+	Distance            float32   `valid:"required~Distance must be greater to zero,positivedecimal~Distance must be a positive decimal"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
-
+	
 	RecorderID *uint
 	Recorder   Employee `gorm:"references:id" valid:"-"`
-
+	
 	PatientID *uint
 	Patient   Patient `gorm:"references:id" valid:"-"`
 
@@ -83,6 +83,8 @@ type Ambulance struct {
 
 	EmployeeID *uint
 	Employee   Employee `gorm:"references:id" valid:"-"`
+
+	AmbulanceOnDuty []AmbulanceOnDuty `gorm:"foreignKey:AmbulanceID"  valid:"-"`
 }
 type Status struct {
 	gorm.Model
@@ -105,6 +107,7 @@ type Employee struct {
 	Assessments      []Assessment       `gorm:"foreignKey:RecorderID"`
 	Incident         []Incident         `gorm:"foreignKey:EmployeeID"`
 	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:RecorderID"`
+	AmbulanceOnDuty []AmbulanceOnDuty `gorm:"foreignKey:RecorderID"`
 }
 
 type AmbulanceCheck struct {
@@ -148,6 +151,7 @@ type Incident struct {
 	UrgencyID   *uint
 	Urgency     Urgency
 	Assessments []Assessment `gorm:"foreignKey:IncidentID" valid:"-"`
+	AmbulanceOnDuty []AmbulanceOnDuty `gorm:"foreignKey:IncidentID" valid:"-"`
 }
 
 type Urgency struct {
@@ -184,7 +188,7 @@ func init() {
 		n := i.(int)
 		return n >= 1
 	})
-	govalidator.CustomTypeTagMap.Set("Positivedecimal", func(i interface{}, context interface{}) bool {
+	govalidator.CustomTypeTagMap.Set("positivedecimal", func(i interface{}, context interface{}) bool {
 		d := i.(float32)
 		return d > 0.00
 	})
