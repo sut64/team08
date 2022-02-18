@@ -32,6 +32,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 import MenuItem from '@material-ui/core/MenuItem';
 import { now } from "moment";
+import AmbulanceChecks from "./AmbulanceCheck";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -345,7 +346,7 @@ function AmbulanceCheckCreate() {
                     <Grid item xs={12}>
                         <Button
                             component={RouterLink}
-                            to="/ambulancecheck"
+                            to="/ambulancechecks/display"
                             variant="contained"
                         >
                             กลับ

@@ -25,7 +25,6 @@ import Button from "@material-ui/core/Button";
 
 import PlayIcon from "@material-ui/icons/PlayArrow";
 
-import AmbulanceCheckCreate from "./components/AmbulanceCheckCreate";
 import HomeIcon from "@material-ui/icons/Home";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import AddIcon from "@material-ui/icons/Add";
@@ -40,6 +39,8 @@ import LocalShippingRoundedIcon from "@material-ui/icons/LocalShippingRounded";
 import Home from "./components/Home";
 import Ambulance from "./components/Ambulance";
 import AmbulanceCreate from "./components/AmbulanceCreate";
+import AmbulanceCheck from "./components/AmbulanceCheck";
+import AmbulanceCheckCreate from "./components/AmbulanceCheckCreate";
 import SignIn from "./components/SignIn";
 import Navbar from "./components/Navbar";
 import IncidentCreate from "./components/IncidentCreate";
@@ -148,7 +149,8 @@ export default function MiniDrawer() {
     { name: "Ambulance Arrival Display", icon: <DescriptionRoundedIcon />, path: "/ambulancearrivals/show" },
     { name: "การรถโรงพยาบาลออกไปปฏิบัติหน้าที่", icon: <AccessAlarmIcon />, path: "/ambulanceonduty/display" },
     { name: "ประเมินอาการผู้ป่วย", icon: <BallotIcon />, path: "/assessment/create" },
-    { name: "ตรวจเช็คความเรียบร้อย", icon: <BuildIcon />, path: "/ambulancecheck/create" },
+    { name: "ตรวจเช็คความเรียบร้อย", icon: <BuildIcon />, path: "/ambulancechecks/create" },
+    { name: "ตารางการตรวจเช็คความเรียบร้อย", icon: <ReceiptIcon />, path: "/ambulancechecks/display" },
   ];
 
   useEffect(() => {
@@ -249,7 +251,8 @@ export default function MiniDrawer() {
               <Route exact path="/ambulancearrival/create" component={AmbulanceArrivalCreate}/>
               <Route exact path="/ambulancearrivals/show" component={AmbulanceArrivals}/>
               <Route exact path="/assessment/create" component={AssessmentCreate}/>
-              <Route exact path="/ambulancecheck/create" component={AmbulanceCheckCreate}/>
+              <Route exact path="/ambulancechecks/create" component={AmbulanceCheckCreate}/>
+              <Route exact path="/ambulancechecks/display" component={AmbulanceCheck}/>
               <Route exact path="/ambulanceonduty/create" component={AmbulanceOnDutyCreate}/>
               <Route exact path="/ambulanceonduty/display" component={AmbulanceOnDutyDisplay}/>
             </Switch>

@@ -60,7 +60,7 @@ func CreateAmbulanceCheck(c *gin.Context) {
 func GetAmbulanceCheck(c *gin.Context) {
 	var ambulancecheck entity.AmbulanceCheck
 	id := c.Param("id")
-	if err := entity.DB().Preload("Employee").Preload("Ambulance").Raw("SELECT * FROM ambulancecheck WHERE id = ?", id).Find(&ambulancecheck).Error; err != nil {
+	if err := entity.DB().Preload("Recorder").Preload("Ambulance").Preload("Problem").Raw("SELECT * FROM ambulance_checks WHERE id = ?", id).Find(&ambulancecheck).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -69,24 +69,23 @@ func GetAmbulanceCheck(c *gin.Context) {
 
 func ListAmbulanceChecks(c *gin.Context) {
 	var ambulancechecks []entity.AmbulanceCheck
-	if err := entity.DB().Preload("Employee").Preload("Ambulance").Raw("SELECT * FROM ambulancechecks").Find(&ambulancechecks).Error; err != nil {
+	if err := entity.DB().Preload("Recorder").Preload("Ambulance").Preload("Problem").Raw("SELECT * FROM ambulance_checks").Find(&ambulancechecks).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusOK, gin.H{"data": ambulancechecks})
 }
 
-func ListAmbulanceChecks2(c *gin.Context) {
-	var ambulancechecks []entity.AmbulanceCheck
-	id := c.Param("employee_id")
-	if err := entity.DB().Preload("Employee").Preload("Ambulance").Raw("SELECT * FROM ambulancechecks WHERE employee_id = ?", id).Find(&ambulancechecks).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+// func ListAmbulanceChecks(c *gin.Context) {
+// 	var ambulancechecks []entity.AmbulanceCheck
+// 	id := c.Param("employee_id")
+// 	if err := entity.DB().Preload("Employee").Preload("Ambulance").Raw("SELECT * FROM ambulancechecks WHERE employee_id = ?", id).Find(&ambulancechecks).Error; err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": ambulancechecks})
-}
+// 	c.JSON(http.StatusOK, gin.H{"data": ambulancechecks})
+// }
 
 func DeleteAmbulanceCheck(c *gin.Context) {
 	id := c.Param("id")

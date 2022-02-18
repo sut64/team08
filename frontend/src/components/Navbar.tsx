@@ -149,7 +149,8 @@ const getRecorder = async (id: Number) => {
   { name: "ข้อมูลรถโรงพยาบาล", icon: <ViewListIcon />, path: "/ambulances" },
   { name: "Ambulance Arrival", icon: <LocalShippingRoundedIcon />, path: "/ambulancearrival/create" },
   { name: "ประเมินอาการผู้ป่วย", icon: <BallotIcon />, path: "/assessment/create" },
-  { name: "ตรวจเช็คความเรียบร้อย", icon: <AddIcon />, path: "/ambulancecheck" },
+  { name: "ตรวจเช็คความเรียบร้อย", icon: <AddIcon />, path: "/ambulancechecks/create" },
+  { name: "ตารางการตรวจเช็คความเรียบร้อย", icon: <TocIcon />, path: "/ambulancechecks/display" },
   { name: "การรถโรงพยาบาลออกไปปฏิบัติหน้าที่", icon: <AddIcon />, path: "/ambulanceonduty/display" },
 ];
 
