@@ -41,10 +41,10 @@ type AmbulanceArrival struct {
 	Number_of_passenger int       `valid:"required,positive~Number of passenger must be greater to zero"`
 	Distance            float32   `valid:"required~Distance must be greater to zero,positivedecimal~Distance must be a positive decimal"`
 	DateTime            time.Time `valid:"today~Ambulance Arrival must be current date"`
-	
+
 	RecorderID *uint
 	Recorder   Employee `gorm:"references:id" valid:"-"`
-	
+
 	PatientID *uint
 	Patient   Patient `gorm:"references:id" valid:"-"`
 
@@ -105,7 +105,7 @@ type Employee struct {
 	Assessments      []Assessment       `gorm:"foreignKey:RecorderID"`
 	Incident         []Incident         `gorm:"foreignKey:EmployeeID"`
 	AmbulanceArrival []AmbulanceArrival `gorm:"foreignKey:RecorderID"`
-	AmbulanceOnDuty []AmbulanceOnDuty `gorm:"foreignKey:RecorderID"`
+	AmbulanceOnDuty  []AmbulanceOnDuty  `gorm:"foreignKey:RecorderID"`
 }
 
 type AmbulanceCheck struct {
@@ -137,7 +137,7 @@ type Illness struct {
 type Incident struct {
 	gorm.Model
 	Title         string    `valid:"required~Title cannot be blank"`
-	Informer      string    `valid:"matches(^[ก-ฮa-zA-Z]+$)~Informer cannot be number, required~Informer cannot be blank"`
+	Informer      string    `valid:"required~Informer cannot be blank"`
 	Numberpatient int       `valid:"positive~Numberpatient cannot be Negative, required~Numberpatient cannot be Zero"`
 	Location      string    `valid:"required~Location cannot be blank"`
 	Datetime      time.Time `valid:"today~DateTime must be present"`
