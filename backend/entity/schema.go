@@ -83,8 +83,6 @@ type Ambulance struct {
 
 	EmployeeID *uint
 	Employee   Employee `gorm:"references:id" valid:"-"`
-
-	AmbulanceOnDuty []AmbulanceOnDuty `gorm:"foreignKey:AmbulanceID"  valid:"-"`
 }
 type Status struct {
 	gorm.Model
@@ -151,7 +149,6 @@ type Incident struct {
 	UrgencyID   *uint
 	Urgency     Urgency
 	Assessments []Assessment `gorm:"foreignKey:IncidentID" valid:"-"`
-	AmbulanceOnDuty []AmbulanceOnDuty `gorm:"foreignKey:IncidentID" valid:"-"`
 }
 
 type Urgency struct {

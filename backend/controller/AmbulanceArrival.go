@@ -83,15 +83,6 @@ func GetAmbulanceArrival(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrival})
 }
 
-// GET /amnluncearrivals
-// func ListAmbulanceArrivals(c *gin.Context) {
-// 	var ambulancearrivals []entity.AmbulanceArrival
-// 	if err := entity.DB().Preload("AmbulanceOnDuty").Preload("Patient").Preload("Recorder").Preload("AmbulanceOnduty.Ambulance").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-// 	c.JSON(http.StatusOK, gin.H{"data": ambulancearrivals})
-// }
 func ListAmbulanceArrivals(c *gin.Context) {
 	var ambulancearrivals []entity.AmbulanceArrival
 	if err := entity.DB().Preload("Recorder").Preload("Patient").Preload("AmbulanceOnDuty").Preload("AmbulanceOnDuty.Ambulance").Raw("SELECT * FROM ambulance_arrivals").Find(&ambulancearrivals).Error; err != nil {

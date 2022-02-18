@@ -174,6 +174,7 @@ function PaymentCreate() {
           console.log("บันทึกได้");
           setSuccess(true);
           setErrorMasage("");
+          getAmbulances();
         } else {
           console.log("บันทึกไม่ได้");
           setError(true);
