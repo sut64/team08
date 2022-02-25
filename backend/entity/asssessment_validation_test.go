@@ -8,6 +8,23 @@ import (
 	. "github.com/onsi/gomega"
 )
 
+// กรณี positive
+
+func TestAssessment(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	assessment := Assessment{
+		Symptom:      "ปวดศีรษะ",
+		SymptomLevel: 2,
+		Datetime:     time.Now(),
+	}
+
+	ok, err := govalidator.ValidateStruct(assessment)
+
+	g.Expect(ok).To(BeTrue())
+	g.Expect(err).To(BeNil())
+}
+
 // ตรวจสอบค่าว่างของ อาการ แล้วต้องชเจอ Error
 func TestSymptomNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
